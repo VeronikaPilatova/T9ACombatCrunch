@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">T9A Combat Crunch</string>
+    <string name="title_create_unit">Create unit %1$d</string>
+    <string name="armybook">Armybook</string>
+    <string name="unit_size">Unit size</string>
+    <string name="unit_type">Unit Type</string>
+    <string name="row_size">Row size</string>
+    <string name="weapons">Weapons</string>
+    <string name="command_group">Command group:</string>
+    <string name="champion">Champion</string>
+    <string name="musician">Musician</string>
+    <string name="standard">Standard</string>
+    <string name="outside_unit_modifiers">Special:</string>
+    <string name="general">General</string>
+    <string name="bsb">BSB</string>
+    <string name="general_s_discipline">General\'s Discipline</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="unit_finished">done</string>
+    <string name="chosen_weapons">Chosen weapons: </string>
+    <string name="comma">, </string>
+    <string name="charging">Charging</string>
+    <string name="stand_and_shoot">Stand and shoot</string>
+    <string name="lost_hp">Lost HP</string>
+    <string name="result_change_the_units">Change the units</string>
+    <string name="combat_phases">Number of combat phases</string>
+    <string name="combat_phase_no">Combat phase %1$d:</string>
+    <plurals name="confirmation_unit_count">
+        <item quantity="one">%1$d model</item>
+        <item quantity="other">%1$d models in rows of %2$d</item>
+    </plurals>
+
+</resources>

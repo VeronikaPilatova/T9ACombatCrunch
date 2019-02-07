@@ -1,0 +1,689 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.the_ninth_age.t9acombatcrunch.Activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/title_combat_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Combat result"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/title_result_overall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Overall:"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_overall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_overall"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_overall"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_overall"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_overall"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_overall"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_overall"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/numbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="numbers" />
+
+        <Button
+            android:id="@+id/button_redo_units_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/result_change_the_units"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/title_result_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_1"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_1"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_1"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_1"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_1"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_1"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_2"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_2"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_2"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_2"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_2"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_2"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_3"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_3"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_3"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_3"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_3"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_3"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_4"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_4"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_4"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_4"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_4"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_4"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_5"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_5"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_5"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_5"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_5"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_5"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_6"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_6"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_6"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_6"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_6"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_6"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_7"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_7"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_7"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_7"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_7"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_7"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_8"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_8"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_8"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_8"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_8"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_8"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_9"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_9"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_9"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_9"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_9"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_9"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_10"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_10"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_10"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_10"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_10"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_10"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_11"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_11"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_11"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_11"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_11"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_11"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_result_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/combat_phase_no"/>
+
+        <LinearLayout
+            android:id="@+id/chart_result_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/bar_unit1_destroyed_12"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueDark" />
+
+            <TextView
+                android:id="@+id/bar_unit1_fled_12"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/blueLight" />
+
+            <TextView
+                android:id="@+id/bar_combat_continues_12"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/goldLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_fled_12"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redLight" />
+
+            <TextView
+                android:id="@+id/bar_unit2_destroyed_12"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/redDark" />
+
+            <TextView
+                android:id="@+id/bar_mutual_destruction_12"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/brown" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

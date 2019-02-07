@@ -1,0 +1,30 @@
+package com.the_ninth_age.t9acombatcrunch.Service.Units;
+
+public enum SpecialRule {
+    WARMACHINE,
+    RELOAD,
+    SCORING,
+    SOBER,
+    PRIMAL_INSTINCT,
+    BATTLE_FOCUS,
+    UNBREAKABLE,
+    STUBBORN,
+    LETHAL_STRIKE,
+    AURA_OF_MADNESS,
+    POISON,
+    FEAR,
+    SKIRMISHER,
+    RAGE,
+    DIVINE_ATTACKS,
+    STRENGTH_FROM_FLESH,
+    UNDEAD,
+    SUPERNAL,
+    UNSTABLE,
+    LIGHT_TROOPS,
+    FEARLESS,
+    DRUNK,
+    WIZARD_CONCLAVE,
+    TOXIC_ATTACKS,
+    BRIAR_BEAST,
+    BIG_BROTHER
+}
