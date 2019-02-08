@@ -351,25 +351,43 @@ public class Combat {
     public void killedModelsOP(OffensiveProfile attacker, Unit defender) {
         int autowound = 0;
         int noArmor = 0;
-        boolean rerollAegisNeg = false;
+        boolean rerollSpecialSavesNeg = false;
 
         //roll the dice
         Unit attackingUnit = identifyUnit(attacker);
         int attacks = getAllAttacks(attacker);
         //hit
         int hits = rollSuccess(attacks, getHitDifficulty(attacker, defender), attacker.isRerollHit(), false);
+        if (attacker.getSpecialRules().contains(SpecialRule.BATTLE_FOCUS)) {
+            hits += rolled6;
+        }
+        if (attacker.getSpecialRules().contains(SpecialRule.POISON)) {
+            hits -= rolled6;
+            autowound = rolled6;
+        }
 
         //wound
         int wounds = rollSuccess(hits, getWoundDifficulty(attacker, defender), attacker.isRerollWound(), false) + autowound;
+        if (attacker.getSpecialRules().contains(SpecialRule.LETHAL_STRIKE)) {
+            wounds -= rolled6;
+            noArmor = rolled6;
+        }
 
         //armor
         int woundsAfterArmor = wounds - rollSuccess(wounds, getArmorDifficulty(attacker, defender), false, false) + noArmor;
         //special saves
         int woundsAfterSpecialSaves = woundsAfterArmor;
-
+        if (attacker.getSpecialRules().contains(SpecialRule.DIVINE_ATTACKS) && defender.getAegisSave() > 0 && (defender.getFortitudeSave() == 0 || defender.getAegisSave() < defender.getFortitudeSave())) {
+            rerollSpecialSavesNeg = true;
+        }
         if (getSpecialSavesDifficulty(attacker, defender) != 0) {
             int woundsToSave = woundsAfterArmor;
-            woundsAfterSpecialSaves -= rollSuccess(woundsToSave, getSpecialSavesDifficulty(attacker, defender), false, rerollAegisNeg);
+            if (attacker.getSpecialRules().contains(SpecialRule.LETHAL_STRIKE)) {
+                if (defender.getFortitudeSave() > 0 && (defender.getAegisSave() == 0 || defender.getFortitudeSave() < defender.getAegisSave())) {
+                    woundsToSave -= noArmor;
+                }
+            }
+            woundsAfterSpecialSaves -= rollSuccess(woundsToSave, getSpecialSavesDifficulty(attacker, defender), false, rerollSpecialSavesNeg);
         }
         //save the numbers
         defender.setWoundsOnAgiStep(defender.getWoundsOnAgiStep() + woundsAfterSpecialSaves);
