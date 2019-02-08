@@ -135,6 +135,9 @@ public class Combat {
 
     public int getUnitWidth(Unit unit) {
         int width = unit.getBaseWidth() * unit.getRowModelsCurrent();
+        if (unit.getSpecialRules().contains(SpecialRule.SKIRMISHER)) {
+            width += 12.5 * (unit.getRowModelsCurrent() - 1);
+        }
         return width;
     }
 
@@ -144,12 +147,28 @@ public class Combat {
         int contactWidth = min(thisUnitWidth, otherUnitWidth);
         int modelsInContact;
 
-        modelsInContact = contactWidth / unit.getBaseWidth();
+        if (unit.getSpecialRules().contains(SpecialRule.SKIRMISHER)) {
+            if (thisUnitWidth >= contactWidth) {
+                modelsInContact = unit.getRowModelsCurrent();
+            } else {
+                double width = 0;
+                modelsInContact = 1;
+                while (width < contactWidth) {
+                    modelsInContact += 1;
+                    width += unit.getBaseWidth() + 12.5;
+                }
+                if (width == contactWidth) {
+                    modelsInContact += 1;
+                }
+            }
+        } else {
+            modelsInContact = contactWidth / unit.getBaseWidth();
             if (unit.getRowModelsCurrent() - modelsInContact <= 2) {
                 modelsInContact += (unit.getRowModelsCurrent() - modelsInContact);
             } else {
                 modelsInContact += 2;
             }
+        }
         return modelsInContact;
     }
 
@@ -283,18 +302,21 @@ public class Combat {
 
     public int getSpecialSavesDifficulty(OffensiveProfile attacker, Unit defender) {
         combatDescription.add("Rolling for special saves");
-        if (defender.getAegisSave() == 0 && defender.getFortitudeSave() != 0) {
-            combatDescription.add("Needs to roll at least " + defender.getFortitudeSave());
-            return defender.getFortitudeSave();
-        } else if (defender.getAegisSave() != 0 && defender.getFortitudeSave() == 0) {
-            combatDescription.add("Needs to roll at least " + defender.getAegisSave());
-            return defender.getAegisSave();
-        } else if (defender.getAegisSave() != 0 && defender.getFortitudeSave() != 0) {
-            combatDescription.add("Needs to roll at least " + min(defender.getAegisSave(), defender.getFortitudeSave()));
-            return min(defender.getAegisSave(), defender.getFortitudeSave());
-        } else {
+        int aegis = defender.getAegisSave();
+        if (aegis == 0) {
+            aegis = 11;
+        }
+        int fortitude = defender.getAegisSave();
+        if (fortitude == 0) {
+            fortitude = 11;
+        }
+        int specialSave = min(aegis, fortitude);
+        if (specialSave == 11) {
             combatDescription.add("No special saves");
             return 0;
+        } else {
+            combatDescription.add("Needs to roll at least " + specialSave);
+            return specialSave;
         }
     }
 
