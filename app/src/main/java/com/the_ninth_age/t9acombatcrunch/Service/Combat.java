@@ -63,8 +63,8 @@ public class Combat {
         if (outcome == null) {
             outcome = CombatOutcome.COMBAT_CONTINUES;
         }
-        System.out.println("Final result is " + outcome + " in combat phase number " + round);
-        Outcome fullOutcome = new Outcome(round, outcome);
+        combatDescription.add("Final result is " + outcome + " in combat phase number " + round);
+        Outcome fullOutcome = new Outcome(round, outcome, combatDescription);
 
         unit1.resetUnit();
         unit2.resetUnit();
@@ -76,9 +76,9 @@ public class Combat {
         round += 1;
         unit1.setWoundsInRound(0);
         unit2.setWoundsInRound(0);
-        System.out.println("");
-        System.out.println("- ROUND " + round + " -");
-        System.out.println(unit1.getName() + ": " + unit1.getModelCount() + " models, " + unit1.getAllRows() + "x" + unit1.getRowModels()
+        combatDescription.add("");
+        combatDescription.add("- ROUND " + round + " -");
+        combatDescription.add(unit1.getName() + ": " + unit1.getModelCount() + " models, " + unit1.getAllRows() + "x" + unit1.getRowModels()
                 + " fighting " + unit2.getName() + ": " + unit2.getModelCount() + " models, " + unit2.getAllRows() + "x" + unit2.getRowModels());
         List<OffensiveProfile> allProfiles = sortByAgi(); //prepare a list of offensive profiles in the correct order
 
@@ -86,7 +86,7 @@ public class Combat {
 
         //roll the dice
         for (OffensiveProfile profile : allProfiles) {
-            System.out.println(profile.getName() + " attacking");
+            combatDescription.add(profile.getName() + " attacking");
             killedModelsOP(profile, identifyOpposingUnit(identifyUnit(profile)));
             if (!nextProfileSimultaneous(allProfiles, profile)) {
                 removeCasualties(unit1);
@@ -94,15 +94,15 @@ public class Combat {
             }
             if (unit1.getModelCount() <= 0 && unit2.getModelCount() <= 0) {
                 outcome = CombatOutcome.MUTUAL_DESTRUCTION;
-                System.out.println("Both units destroyed, combat ended");
+                combatDescription.add("Both units destroyed, combat ended");
                 break;
             } else if (unit1.getModelCount() <= 0) {
                 outcome = CombatOutcome.UNIT1_DESTROYED;
-                System.out.println("Unit " + unit1.getName() + " destroyed, combat ended");
+                combatDescription.add("Unit " + unit1.getName() + " destroyed, combat ended");
                 break;
             } else if (unit2.getModelCount() <= 0) {
                 outcome = CombatOutcome.UNIT2_DESTROYED;
-                System.out.println("Unit " + unit2.getName() + " destroyed, combat ended");
+                combatDescription.add("Unit " + unit2.getName() + " destroyed, combat ended");
                 break;
             }
         }
@@ -137,7 +137,6 @@ public class Combat {
         List<OffensiveProfile> allProfiles = new ArrayList<>();
         allProfiles.addAll(unit1.getOffensiveProfiles());
         allProfiles.addAll(unit2.getOffensiveProfiles());
-        System.out.println("List of all offensive profiles compiled");
         return allProfiles;
     }
 
@@ -157,7 +156,6 @@ public class Combat {
         //sort profiles by current agility
         Collections.sort(profiles);
         Collections.reverse(profiles);
-        System.out.println("All profiles sorted by agility");
         return profiles;
     }
 
@@ -212,12 +210,12 @@ public class Combat {
         }
         int frontAttacks = getModelsInContact(attackingUnit) * attacksPerProfile + attackingUnit.getChampion() * attacker.getChampionApplicable();
         int supportingAttacks = getSupportingAttacks(attacker);
-        System.out.println("Attacks from " + attacker.getName() + ": " + frontAttacks + " front + " + supportingAttacks + " supporting");
+        combatDescription.add("Attacks from " + attacker.getName() + ": " + frontAttacks + " front + " + supportingAttacks + " supporting");
         return (frontAttacks + supportingAttacks) * attacker.getCountInUnit();
     }
 
     public int getHitDifficulty(OffensiveProfile attacker, Unit defender) {
-        System.out.println("Rolling for hit");
+        combatDescription.add("Rolling for hit");
         int diff = attacker.getOff() - defender.getDef();
         int difficulty;
         if (diff > 3) {
@@ -232,12 +230,12 @@ public class Combat {
             difficulty = 6;
         }
         difficulty = difficulty + identifyUnit(attacker).getFailedFear() - defender.getFailedFear();
-        System.out.println("Needs to roll at least " + difficulty);
+        combatDescription.add("Needs to roll at least " + difficulty);
         return difficulty;
     }
 
     public int getWoundDifficulty(OffensiveProfile attacker, Unit defender) {
-        System.out.println("Rolling for wound");
+        combatDescription.add("Rolling for wound");
         int diff = attacker.getStr() - defender.getRes();
         int difficulty;
         if (diff > 1) {
@@ -251,30 +249,30 @@ public class Combat {
         } else {
             difficulty = 6;
         }
-        System.out.println("Needs to roll at least " + difficulty);
+        combatDescription.add("Needs to roll at least " + difficulty);
         return difficulty;
     }
 
     public int getArmorDifficulty(OffensiveProfile attacker, Unit defender) {
-        System.out.println("Rolling for armor");
+        combatDescription.add("Rolling for armor");
         int difficulty = max((defender.getArm() + attacker.getAp()), 2);
-        System.out.println("Needs to roll at least " + difficulty);
+        combatDescription.add("Needs to roll at least " + difficulty);
         return difficulty;
     }
 
     public int getSpecialSavesDifficulty(OffensiveProfile attacker, Unit defender) {
-        System.out.println("Rolling for special saves");
+        combatDescription.add("Rolling for special saves");
         if (defender.getAegisSave() == 0 && defender.getFortitudeSave() != 0) {
-            System.out.println("Needs to roll at least " + defender.getFortitudeSave());
+            combatDescription.add("Needs to roll at least " + defender.getFortitudeSave());
             return defender.getFortitudeSave();
         } else if (defender.getAegisSave() != 0 && defender.getFortitudeSave() == 0) {
-            System.out.println("Needs to roll at least " + defender.getAegisSave());
+            combatDescription.add("Needs to roll at least " + defender.getAegisSave());
             return defender.getAegisSave();
         } else if (defender.getAegisSave() != 0 && defender.getFortitudeSave() != 0) {
-            System.out.println("Needs to roll at least " + min(defender.getAegisSave(), defender.getFortitudeSave()));
+            combatDescription.add("Needs to roll at least " + min(defender.getAegisSave(), defender.getFortitudeSave()));
             return min(defender.getAegisSave(), defender.getFortitudeSave());
         } else {
-            System.out.println("No special saves");
+            combatDescription.add("No special saves");
             return 0;
         }
     }
@@ -303,7 +301,7 @@ public class Combat {
                 }
             }
         }
-        System.out.println("Number of successes rolled: " + result);
+        combatDescription.add("Number of successes rolled: " + result);
         return result;
     }
 
@@ -333,7 +331,7 @@ public class Combat {
         //save the numbers
         defender.setWoundsOnAgiStep(defender.getWoundsOnAgiStep() + woundsAfterSpecialSaves);
         defender.setWoundsInRound(defender.getWoundsInRound() + woundsAfterSpecialSaves);
-        System.out.println("Inflicted " + woundsAfterSpecialSaves + " wounds");
+        combatDescription.add("Inflicted " + woundsAfterSpecialSaves + " wounds");
     }
 
     public void removeCasualties(Unit defender) {
@@ -341,7 +339,7 @@ public class Combat {
         int killedModels = lostHitPoints / defender.getHp();
         defender.setLostHitPoints(lostHitPoints % defender.getHp());
         defender.setModelCount(defender.getModelCount() - killedModels);
-        System.out.println(killedModels + " casualties removed from unit " + defender.getName() + ", " + defender.getModelCount() + " models remaining");
+        combatDescription.add(killedModels + " casualties removed from unit " + defender.getName() + ", " + defender.getModelCount() + " models remaining");
         defender.setWoundsOnAgiStep(0);
     }
 
@@ -349,7 +347,7 @@ public class Combat {
         OffensiveProfile nextProfile = findNextProfile(allProfiles, currentProfile);
         if (nextProfile != null) {
             if (currentProfile.getAgiCurrent() == nextProfile.getAgiCurrent()) {
-                System.out.println("Next attack is simultaneous");
+                combatDescription.add("Next attack is simultaneous");
                 return true;
             } else {
                 return false;
@@ -371,9 +369,9 @@ public class Combat {
 
     public void combatScoreAndBreakTest() {
         int unit1Score = getCombatScore(unit1);
-        System.out.println("Combat result for " + unit1.getName() + " is " + unit1Score);
+        combatDescription.add("Combat result for " + unit1.getName() + " is " + unit1Score);
         int unit2Score = getCombatScore(unit2);
-        System.out.println("Combat result for " + unit2.getName() + " is " + unit2Score);
+        combatDescription.add("Combat result for " + unit2.getName() + " is " + unit2Score);
         int combatScoreDiff = abs(unit1Score - unit2Score);
 
         Unit loser = determineLoser(unit1Score, unit2Score);
@@ -381,10 +379,10 @@ public class Combat {
             boolean breakTestPassed;
             breakTestPassed = breakTestPassed(loser, combatScoreDiff);
                 if (breakTestPassed == false && loser.equals(unit1)) {
-                    System.out.println(loser.getName() + " fled");
+                    combatDescription.add(loser.getName() + " fled");
                     outcome = CombatOutcome.UNIT1_FLED;
                     } else if (breakTestPassed == false && loser.equals(unit2)) {
-                    System.out.println(loser.getName() + " fled");
+                    combatDescription.add(loser.getName() + " fled");
                     outcome = CombatOutcome.UNIT2_FLED;
                     }
                 }
@@ -407,13 +405,13 @@ public class Combat {
 
     public Unit determineLoser(int unit1Score, int unit2Score) {
         if (unit1Score > unit2Score) {
-            System.out.println(unit2.getName() + " lost");
+            combatDescription.add(unit2.getName() + " lost");
             return unit2;
         } else if (unit2Score > unit1Score) {
-            System.out.println(unit1.getName() + " lost");
+            combatDescription.add(unit1.getName() + " lost");
             return unit1;
         } else {
-            System.out.println("There is no winner");
+            combatDescription.add("There is no winner");
             return null;
         }
     }
@@ -427,19 +425,19 @@ public class Combat {
         int difficulty = unit.getLeadership() - modifier;
 
         //roll and return result
-        System.out.println("Must roll less than " + difficulty);
+        combatDescription.add("Must roll less than " + difficulty);
         int roll = d6() + d6();
-        System.out.println("Roll result is " + roll);
+        combatDescription.add("Roll result is " + roll);
         //if unit has access to BSB reroll and take better
         if (unit.getBsb() == 1) {
             int roll2 = d6() + d6();
-            System.out.println("Second foll for BSB is " + roll2);
+            combatDescription.add("Second foll for BSB is " + roll2);
             roll = min(roll, roll2);
         }
         if (roll > difficulty) {
             return false;
         } else {
-            System.out.println(unit.getName() + " passed discipline test");
+            combatDescription.add(unit.getName() + " passed discipline test");
             return true;
         }
     }
@@ -447,14 +445,14 @@ public class Combat {
     public int d6() {
         Random randomGenerator = new Random();
         int d6 = randomGenerator.nextInt(6) + 1;
-        System.out.println("rolled " + d6);
+        combatDescription.add("rolled " + d6);
         return d6;
     }
 
     public int d3() {
         Random randomGenerator = new Random();
         int d3 = randomGenerator.nextInt(3) + 1;
-        System.out.println("rolled " + d3);
+        combatDescription.add("rolled " + d3);
         return d3;
     }
 }

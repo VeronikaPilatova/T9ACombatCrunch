@@ -47,6 +47,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     Button button_rounds_increase;
     Button button_redo_units;
     Button button_run_simulator;
+    Button button_run_debug;
 
     //variables;
     Unit unit1;
@@ -81,6 +82,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         rounds_textview = (TextView) findViewById(R.id.rounds_textview);
         button_redo_units = (Button) findViewById(R.id.button_redo_units_confirmation);
         button_run_simulator = (Button) findViewById(R.id.button_run_simulator);
+        button_run_debug = (Button) findViewById(R.id.button_run_debug);
 
         //onClick listeners for the buttons
         button_rounds_increase.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +107,12 @@ public class ConfirmationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startSimulator();
+            }
+        });
+        button_run_debug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                runDebug();
             }
         });
 
@@ -264,6 +272,16 @@ public class ConfirmationActivity extends AppCompatActivity {
         simulatorService.setRoundsRequested(rounds);
         saveChanges();
         Intent intent = new Intent(this, ResultActivity.class);
+        gson = new Gson();
+        String serviceJson = gson.toJson(simulatorService);
+        intent.putExtra("simulatorService", serviceJson);
+        startActivity(intent);
+    }
+
+    private void runDebug() {
+        simulatorService.setRoundsRequested(rounds);
+        saveChanges();
+        Intent intent = new Intent(this, DebugActivity.class);
         gson = new Gson();
         String serviceJson = gson.toJson(simulatorService);
         intent.putExtra("simulatorService", serviceJson);

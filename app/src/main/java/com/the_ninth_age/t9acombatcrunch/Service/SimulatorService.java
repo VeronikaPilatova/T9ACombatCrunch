@@ -45,7 +45,6 @@ public class SimulatorService {
             outcomeMap.put(CombatOutcome.MUTUAL_DESTRUCTION, Integer.valueOf(0));
             outcomeList.add(outcomeMap);
         }
-
         //run simulations and log results
         for (int j = 0; j < SIMULATIONS; j++) {
             Outcome result = combat.fullCombat(roundsRequested);
@@ -55,6 +54,11 @@ public class SimulatorService {
             outcomeMap.put(combatOutcome, outcomeMap.get(combatOutcome).intValue() + 1);
         }
         return outcomeList;
+    }
+
+    public Outcome runDebugCombat() {
+        Combat combat = new Combat(unit1, unit2);
+        return combat.fullCombat(roundsRequested);
     }
 
     public Unit saveUnit(int number, String armybookEntryName, int modelCount, int rowModels, int champion, int musician, int standard, int generalLeadership, int bsb, int charge, int standAndShoot, String ccWeapon, String shootingWeapon, int lostHp) {
