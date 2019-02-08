@@ -52,6 +52,18 @@ public class Combat {
         //special rules
 
         //discipline modifiers
+        for (Unit unit : units) {
+            if (unit.getGeneralLeadership() > 0) {
+                int leadership = max(unit.getGeneralLeadership(), unit.getLeadership());
+                unit.setLeadership(leadership);
+            }
+            if (unit.getSpecialRules().contains(SpecialRule.AURA_OF_MADNESS)) {
+                identifyOpposingUnit(unit).setLeadership(unit.getLeadership() - 1);
+            }
+            if (unit.getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEARLESS) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.DRUNK)) {
+                identifyOpposingUnit(unit).setLeadership(unit.getLeadership() - 1);
+            }
+        }
 
         //go through combat phases
         for (int i = 0; i < combatPhases; i++) {
@@ -83,6 +95,15 @@ public class Combat {
         List<OffensiveProfile> allProfiles = sortByAgi(); //prepare a list of offensive profiles in the correct order
 
         //special rules
+        for (Unit unit : units) {
+            if (unit.getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEARLESS) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.DRUNK)) {
+                if (breakTestPassed(identifyOpposingUnit(unit), 0)) {
+                    identifyOpposingUnit(unit).setFailedFear(0);
+                } else {
+                    identifyOpposingUnit(unit).setFailedFear(1);
+                }
+            }
+        }
 
         //roll the dice
         for (OffensiveProfile profile : allProfiles) {
