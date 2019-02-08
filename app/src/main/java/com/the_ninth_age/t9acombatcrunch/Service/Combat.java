@@ -438,16 +438,63 @@ public class Combat {
         Unit loser = determineLoser(unit1Score, unit2Score);
         if (loser != null) {
             boolean breakTestPassed;
-            breakTestPassed = breakTestPassed(loser, combatScoreDiff);
+
+            if (loser.getSpecialRules().contains(SpecialRule.UNDEAD)) {
+                //if loser is undead, remove extra models
+                int wounds = combatScoreDiff;
+                if (loser.getSpecialRules().contains(SpecialRule.STUBBORN)) {
+                    wounds = (int) ceil(wounds / 2.0);
+                }
+                if (loser.getFullRanks() > identifyOpposingUnit(loser).getFullRanks()) {
+                    wounds = min(wounds, 12);
+                }
+                if (loser.getBsb() == 1) {
+                    wounds -= max(loser.getFullRanks(), 1);
+                }
+                loser.setWoundsOnAgiStep(loser.getWoundsOnAgiStep() + wounds);
+                removeCasualties(loser);
+            } else if (loser.getSpecialRules().contains(SpecialRule.SUPERNAL)) {
+                //if loser is a supernal, roll reak test and if not passed remove extra models
+                if (!breakTestPassed(loser, combatScoreDiff)) {
+                    int wounds = combatScoreDiff;
+                    loser.setWoundsOnAgiStep(loser.getWoundsOnAgiStep() + wounds);
+                    removeCasualties(loser);
+                }
+            } else if (loser.getSpecialRules().contains(SpecialRule.UNSTABLE)) {
+                //if loser is unstable without any of the previous two remove extra models
+                int wounds = combatScoreDiff;
+                loser.setWoundsOnAgiStep(loser.getWoundsOnAgiStep() + wounds);
+                removeCasualties(loser);
+            } else {
+                //else roll break test as normal
+                //if unit is unbreakable skip, otherwise roll discipline
+                if (loser.getSpecialRules().contains(SpecialRule.UNBREAKABLE)) {
+                    breakTestPassed = true;
+                } else {
+                    breakTestPassed = breakTestPassed(loser, combatScoreDiff);
+                }
                 if (breakTestPassed == false && loser.equals(unit1)) {
-                    combatDescription.add(loser.getName() + " fled");
-                    outcome = CombatOutcome.UNIT1_FLED;
-                    } else if (breakTestPassed == false && loser.equals(unit2)) {
-                    combatDescription.add(loser.getName() + " fled");
-                    outcome = CombatOutcome.UNIT2_FLED;
+                    if (loser.getSpecialRules().contains(SpecialRule.WARMACHINE)) {
+                        System.out.println(loser.getName() + " destroyed");
+                        outcome = CombatOutcome.UNIT1_DESTROYED;
+
+                    } else {
+                        System.out.println(loser.getName() + " fled");
+                        outcome = CombatOutcome.UNIT1_FLED;
+                    }
+                } else if (breakTestPassed == false && loser.equals(unit2)) {
+                    if (loser.getSpecialRules().contains(SpecialRule.WARMACHINE)) {
+                        System.out.println(loser.getName() + " destroyed");
+                        outcome = CombatOutcome.UNIT2_DESTROYED;
+
+                    } else {
+                        System.out.println(loser.getName() + " fled");
+                        outcome = CombatOutcome.UNIT2_FLED;
                     }
                 }
             }
+        }
+    }
 
     public int getCombatScore(Unit unit) {
         //get rank bonus only if not in line formation
