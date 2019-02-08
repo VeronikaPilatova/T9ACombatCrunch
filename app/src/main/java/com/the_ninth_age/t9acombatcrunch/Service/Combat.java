@@ -50,6 +50,18 @@ public class Combat {
         rolled6 = 0;
 
         //special rules
+        for (Unit unit : units) {
+            for (OffensiveProfile profile : unit.getOffensiveProfiles()) {
+                if (profile.getActualWeapon() == WeaponType.GIANT_CLUB) {
+                    profile.setStr(profile.getStr() + 1);
+                    profile.setAp(profile.getAp() + 1);
+                }
+                if (profile.getActualWeapon() == WeaponType.UPROOTED_TREE) {
+                    profile.setStr(5);
+                    profile.setAp(0);
+                }
+            }
+        }
 
         //discipline modifiers
         for (Unit unit : units) {
@@ -97,10 +109,19 @@ public class Combat {
         //special rules
         for (Unit unit : units) {
             if (unit.getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEARLESS) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.DRUNK)) {
+                combatDescription.add("Need to roll discipline for " + identifyOpposingUnit(unit).getName() + " (fear)");
                 if (breakTestPassed(identifyOpposingUnit(unit), 0)) {
                     identifyOpposingUnit(unit).setFailedFear(0);
                 } else {
                     identifyOpposingUnit(unit).setFailedFear(1);
+                }
+            }
+        }
+        for (OffensiveProfile profile : allProfiles) {
+            if (profile.getSpecialRules().contains(SpecialRule.PRIMAL_INSTINCT)) {
+                Unit unit = identifyUnit(profile);
+                if (breakTestPassed(unit, 0)) {
+                    profile.setRerollHit(true);
                 }
             }
         }
@@ -385,6 +406,23 @@ public class Combat {
             if (attacker.getSpecialRules().contains(SpecialRule.LETHAL_STRIKE)) {
                 if (defender.getFortitudeSave() > 0 && (defender.getAegisSave() == 0 || defender.getFortitudeSave() < defender.getAegisSave())) {
                     woundsToSave -= noArmor;
+                }
+                if (attacker.getSpecialRules().contains(SpecialRule.STRENGTH_FROM_FLESH)) {
+                    int lethalSaved = 0;
+                    //if using Aegis
+                    if (defender.getAegisSave() > 0 && (defender.getFortitudeSave() == 0 || defender.getAegisSave() < defender.getFortitudeSave())) {
+                        lethalSaved = rollSuccess(noArmor, getSpecialSavesDifficulty(attacker, defender), false, rerollSpecialSavesNeg);
+                        woundsAfterSpecialSaves -= lethalSaved;
+                        woundsToSave -= noArmor;
+                    }
+                    //heal the Gortach
+                    if (noArmor - lethalSaved > 0) {
+                        identifyUnit(attacker).setHp(identifyUnit(attacker).getHp() + 1);
+                    }
+                    //multiply wounds
+                    for (int i = 0; i < noArmor - lethalSaved; i++) {
+                        woundsAfterSpecialSaves += min(d3(), defender.getHp()) - 1;
+                    }
                 }
             }
             woundsAfterSpecialSaves -= rollSuccess(woundsToSave, getSpecialSavesDifficulty(attacker, defender), false, rerollSpecialSavesNeg);
