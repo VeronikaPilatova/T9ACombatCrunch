@@ -28,7 +28,7 @@ public class ArmybookEntry {
     protected List<List<WeaponType>> possibleWeaponsList;
     protected List<List<WeaponTypeShooting>> possibleShootingWeaponsList;
     protected Armybook armybook;
-    protected List specialRules;
+    protected List<SpecialRule> specialRules;
 
     public ArmybookEntry() {
     }

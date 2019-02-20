@@ -113,6 +113,13 @@
                 android:inputType="number" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button_show_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Show unit stats" />
+
         <TextView
             android:id="@+id/title_weapons"
             android:layout_width="wrap_content"

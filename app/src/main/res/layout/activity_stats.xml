@@ -8,70 +8,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            android:text="@string/armybook"
+            android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="@string/armybook"
-                android:textSize="16sp" />
+        <Spinner
+            android:id="@+id/spinner_armybook_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="@string/unit_type"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/spinner_armybook_stats"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="8dp" />
+            android:text="@string/unit_type"
+            android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/spinner_unit_type_stats"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp" />
-        </LinearLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/title_unit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
+            android:text="Unit name"
             android:textAlignment="center"
-            android:textSize="30sp"
-            android:text="Unit name" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textview_stats_general"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Height: %1$s\nType: %2$s\nBase: %3$dx%4$dmm" />
+            android:text="@string/stats_general" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -81,439 +59,439 @@
             <TableRow>
 
                 <TextView
-                    android:text="Global"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Global" />
 
                 <TextView
-                    android:text="Adv"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Adv" />
 
                 <TextView
-                    android:text="Mar"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Mar" />
 
                 <TextView
-                    android:text="Dis"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Dis" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_adv"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_mar"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_dis"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_specialrules_global"
-                    android:text="special rules"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="special rules" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:text="Defensive"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Defensive" />
 
                 <TextView
-                    android:text="Hp"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Hp" />
 
                 <TextView
-                    android:text="Def"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Def" />
 
                 <TextView
-                    android:text="Res"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Res" />
 
                 <TextView
-                    android:text="Arm"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Arm" />
 
                 <TextView
-                    android:text="Fortitude"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Fortitude" />
 
                 <TextView
-                    android:text="Aegis"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Aegis" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_hp"
-                    android:text="1"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/textview_stats_def"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_res"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_arm"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_fortitude"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_aegis"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_armor_type"
-                    android:text="armor type"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="armor type" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:text="Offensive"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Offensive" />
 
                 <TextView
-                    android:text="Att"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Att" />
 
                 <TextView
-                    android:text="Off"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Off" />
 
                 <TextView
-                    android:text="Str"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Str" />
 
                 <TextView
-                    android:text="AP"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="AP" />
 
                 <TextView
-                    android:text="Agi"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="Agi" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_OP1">
 
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP1"
-                    android:text="name"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="name" />
 
                 <TextView
                     android:id="@+id/textview_stats_att_OP1"
-                    android:text="1"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/textview_stats_off_OP1"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_str_OP1"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_ap_OP1"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_agi_OP1"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_specialrules_OP1">
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_specialrules_OP1"
-                    android:text="special rules"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="special rules" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_OP2">
 
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP2"
-                    android:text="name"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="name" />
 
                 <TextView
                     android:id="@+id/textview_stats_att_OP2"
-                    android:text="1"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/textview_stats_off_OP2"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_str_OP2"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_ap_OP2"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_agi_OP2"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_specialrules_OP2">
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_specialrules_OP2"
-                    android:text="special rules"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="special rules" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_OP3">
 
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP3"
-                    android:text="name"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="name" />
 
                 <TextView
                     android:id="@+id/textview_stats_att_OP3"
-                    android:text="1"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/textview_stats_off_OP3"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_str_OP3"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_ap_OP3"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_agi_OP3"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_specialrules_OP3">
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_specialrules_OP3"
-                    android:text="special rules"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="special rules" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_OP4">
 
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP4"
-                    android:text="name"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="name" />
 
                 <TextView
                     android:id="@+id/textview_stats_att_OP4"
-                    android:text="1"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/textview_stats_off_OP4"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_str_OP4"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_ap_OP4"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_agi_OP4"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_specialrules_OP4">
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_specialrules_OP4"
-                    android:text="special rules"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="special rules" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_OP5">
 
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP5"
-                    android:text="name"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="name" />
 
                 <TextView
                     android:id="@+id/textview_stats_att_OP5"
-                    android:text="1"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/textview_stats_off_OP5"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_str_OP5"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_ap_OP5"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_agi_OP5"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_specialrules_OP5">
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_specialrules_OP5"
-                    android:text="special rules"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="special rules" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_OP6">
 
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP6"
-                    android:text="name"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="name" />
 
                 <TextView
                     android:id="@+id/textview_stats_att_OP6"
-                    android:text="1"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/textview_stats_off_OP6"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_str_OP6"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/textview_stats_ap_OP6"
-                    android:text="0"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="0" />
 
                 <TextView
                     android:id="@+id/textview_stats_agi_OP6"
-                    android:text="4"
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="4" />
             </TableRow>
 
             <TableRow android:id="@+id/tablerow_stats_specialrules_OP6">
 
                 <TextView
-                    android:text=""
-                    android:layout_marginRight="16dp" />
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_specialrules_OP6"
-                    android:text="special rules"
                     android:layout_marginRight="16dp"
-                    android:layout_span="6" />
+                    android:layout_span="6"
+                    android:text="special rules" />
             </TableRow>
 
         </TableLayout>

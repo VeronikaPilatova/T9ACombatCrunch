@@ -25,6 +25,7 @@
     <string name="result_change_the_units">Change the units</string>
     <string name="combat_phases">Number of combat phases</string>
     <string name="combat_phase_no">Combat phase %1$d:</string>
+    <string name="stats_general">Height: %1$s \nType: %2$s \nBase: %3$dx%4$dmm</string>
     <plurals name="confirmation_unit_count">
         <item quantity="one">%1$d model</item>
         <item quantity="other">%1$d models in rows of %2$d</item>

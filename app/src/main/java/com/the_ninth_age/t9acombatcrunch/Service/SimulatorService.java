@@ -239,4 +239,8 @@ public class SimulatorService {
         ArmybookEntry armybookEntry = armybookEntryRepository.findSpecific(armybookEntryName);
         return armybookEntry.getHp();
     }
+
+    public ArmybookEntry getArmybookEntry(String name) {
+        return armybookEntryRepository.findSpecific(name);
+    }
 }

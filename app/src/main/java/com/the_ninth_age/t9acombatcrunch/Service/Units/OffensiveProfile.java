@@ -18,7 +18,7 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     private int originalStr;
     private int originalAp;
     private int originalAgi;
-    List specialRules;
+    List<SpecialRule> specialRules;
 
     private int countInUnit;
     int championApplicable;

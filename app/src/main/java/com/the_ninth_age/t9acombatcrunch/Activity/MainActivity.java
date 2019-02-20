@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_general_dis_decrease;
     private Button button_general_dis_increase;
     private Button button_done;
+    private Button button_show_stats;
 
     //interface needed variables
     private int unitNumber;
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         button_general_dis_decrease = (Button) findViewById(R.id.button_general_dis_decrease);
         button_general_dis_increase = (Button) findViewById(R.id.button_general_dis_increase);
         button_done = (Button) findViewById(R.id.button_done);
+        button_show_stats = (Button) findViewById(R.id.button_show_stats);
 
         //set watchers for the two edit text fields
         edit_unit_size.addTextChangedListener(unitSizeWatcher);
@@ -198,6 +200,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 increaseLostHp(v);
+            }
+        });
+        button_show_stats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stats(v);
             }
         });
 
@@ -542,9 +550,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //launching activities
+    //repeat unit creation
     private void repeatUnitCreation() {
         Intent intent = new Intent(this, MainActivity.class);
-        gson = new Gson();
         String serviceJson = gson.toJson(simulatorService);
         intent.putExtra("simulatorService", serviceJson);
         startActivity(intent);
@@ -553,7 +561,15 @@ public class MainActivity extends AppCompatActivity {
     //launch conformation
     private void confirmation() {
         Intent intent = new Intent(this, ConfirmationActivity.class);
-        gson = new Gson();
+        String serviceJson = gson.toJson(simulatorService);
+        intent.putExtra("simulatorService", serviceJson);
+        startActivity(intent);
+    }
+
+    //display stats
+    private void stats(View view) {
+        Intent intent = new Intent(this, StatsActivity.class);
+        intent.putExtra("unitName", armybookEntry);
         String serviceJson = gson.toJson(simulatorService);
         intent.putExtra("simulatorService", serviceJson);
         startActivity(intent);
