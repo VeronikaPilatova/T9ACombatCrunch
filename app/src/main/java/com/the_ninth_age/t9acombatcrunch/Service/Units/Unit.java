@@ -293,6 +293,10 @@ public class Unit extends ArmybookEntry {
     public void setOriginalLostHitPoints(int originalLostHitPoints) { this.originalLostHitPoints = originalLostHitPoints; }
 
     public int getHp() {
-        return hp;
+        if (specialRules.contains(SpecialRule.WIZARD_CONCLAVE) && modelCount == 1) {
+            return hp + 1;
+        } else {
+            return hp;
+        }
     }
 }

@@ -121,6 +121,21 @@ public enum SpecialRule {
             return "Toxic attacks";
         }
     },
+    FLAMING_ATTACKS {
+        public String toString() {
+            return "Flaming attacks";
+        }
+    },
+    FLAMEABLE {
+        public String toString() {
+            return "Flameable";
+        }
+    },
+    DISTRACTING {
+        public String toString() {
+            return "Distracting";
+        }
+    },
     BRIAR_BEAST {
         public String toString() {
             return "";

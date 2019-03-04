@@ -60,6 +60,9 @@ public class Combat {
                     profile.setStr(5);
                     profile.setAp(0);
                 }
+                if (profile.getSpecialRules().contains(SpecialRule.FLAMING_ATTACKS) && identifyOpposingUnit(identifyUnit(profile)).getSpecialRules().contains(SpecialRule.FLAMEABLE)) {
+                    profile.setRerollWound(true);
+                }
             }
         }
 
@@ -133,19 +136,6 @@ public class Combat {
             if (!nextProfileSimultaneous(allProfiles, profile)) {
                 removeCasualties(unit1);
                 removeCasualties(unit2);
-            }
-            if (unit1.getModelCount() <= 0 && unit2.getModelCount() <= 0) {
-                outcome = CombatOutcome.MUTUAL_DESTRUCTION;
-                combatDescription.add("Both units destroyed, combat ended");
-                break;
-            } else if (unit1.getModelCount() <= 0) {
-                outcome = CombatOutcome.UNIT1_DESTROYED;
-                combatDescription.add("Unit " + unit1.getName() + " destroyed, combat ended");
-                break;
-            } else if (unit2.getModelCount() <= 0) {
-                outcome = CombatOutcome.UNIT2_DESTROYED;
-                combatDescription.add("Unit " + unit2.getName() + " destroyed, combat ended");
-                break;
             }
         }
         if (outcome == null) {
@@ -290,7 +280,12 @@ public class Combat {
         } else {
             difficulty = 6;
         }
+        //special rules
         difficulty = difficulty + identifyUnit(attacker).getFailedFear() - defender.getFailedFear();
+        if (defender.getSpecialRules().contains(SpecialRule.DISTRACTING)) {
+            difficulty += 1;
+        }
+        //return difficulty
         combatDescription.add("Needs to roll at least " + difficulty);
         return difficulty;
     }
@@ -323,11 +318,17 @@ public class Combat {
 
     public int getSpecialSavesDifficulty(OffensiveProfile attacker, Unit defender) {
         combatDescription.add("Rolling for special saves");
+        //load original values
         int aegis = defender.getAegisSave();
+        int fortitude = defender.getAegisSave();
+        //special rules
+        if (attacker.getSpecialRules().contains(SpecialRule.FLAMING_ATTACKS)) {
+            fortitude = 11;
+        }
+        //return the better save
         if (aegis == 0) {
             aegis = 11;
         }
-        int fortitude = defender.getAegisSave();
         if (fortitude == 0) {
             fortitude = 11;
         }
@@ -438,8 +439,19 @@ public class Combat {
         int killedModels = lostHitPoints / defender.getHp();
         defender.setLostHitPoints(lostHitPoints % defender.getHp());
         defender.setModelCount(defender.getModelCount() - killedModels);
-        combatDescription.add(killedModels + " casualties removed from unit " + defender.getName() + ", " + defender.getModelCount() + " models remaining");
+        combatDescription.add(killedModels + " casualties removed from unit " + defender.getName() + ", " + max(defender.getModelCount(), 0) + " models remaining");
         defender.setWoundsOnAgiStep(0);
+        //is combat ended?
+        if (unit1.getModelCount() <= 0 && unit2.getModelCount() <= 0) {
+            outcome = CombatOutcome.MUTUAL_DESTRUCTION;
+            combatDescription.add("Both units destroyed, combat ended");
+        } else if (unit1.getModelCount() <= 0) {
+            outcome = CombatOutcome.UNIT1_DESTROYED;
+            combatDescription.add("Unit " + unit1.getName() + " destroyed, combat ended");
+        } else if (unit2.getModelCount() <= 0) {
+            outcome = CombatOutcome.UNIT2_DESTROYED;
+            combatDescription.add("Unit " + unit2.getName() + " destroyed, combat ended");
+        }
     }
 
     public boolean nextProfileSimultaneous(List<OffensiveProfile> allProfiles, OffensiveProfile currentProfile) {
@@ -487,7 +499,7 @@ public class Combat {
                     wounds = min(wounds, 12);
                 }
                 if (loser.getBsb() == 1) {
-                    wounds -= max(loser.getFullRanks(), 1);
+                    wounds -= min(wounds, (max(min(loser.getFullRanks(), 3), 1)));
                 }
                 loser.setWoundsOnAgiStep(loser.getWoundsOnAgiStep() + wounds);
                 removeCasualties(loser);
@@ -601,4 +613,5 @@ public class Combat {
         combatDescription.add("rolled " + d3);
         return d3;
     }
+
 }
