@@ -155,5 +155,241 @@ public enum SpecialRule {
         public String toString() {
             return "Hatred";
         }
-    }
+    },
+    INANIMATE {
+        public String toString() {
+            return "Inanimate";
+        }
+    },
+    HURL_ATTACK {
+        public String toString() {
+            return "Hurl attack";
+        }
+    },
+    DARK_FIRE_4 {
+        public String toString() {
+            return "Dark fire";
+        }
+    },
+    SMOTHER {
+        public String toString() {
+            return "Smother";
+        }
+    },
+    TIGHTENING_GRASP {
+        public String toString() {
+            return "Tightening grasp";
+        }
+    },
+    SPELL_CRAVING {
+        public String toString() {
+            return "Spell craving";
+        }
+    },
+    AETHER_BATTERY {
+        public String toString() {
+            return "Aether battery";
+        }
+    },
+    ACID_BLOOD {
+        public String toString() {
+            return "Acid blood";
+        }
+    },
+    KILLER_INSTINCT {
+        public String toString() {
+            return "Killer instinct";
+        }
+    },
+    CULT_NABH {
+        public String toString() {
+            return "Cult of Nabh";
+        }
+    },
+    CULT_CADARON {
+        public String toString() {
+            return "Cult of Cadaron";
+        }
+    },
+    CULT_OLARON {
+        public String toString() {
+            return "Cult of Olaron";
+        }
+    },
+    PETRIFYING_STARE {
+        public String toString() {
+            return "Petrifying stare";
+        }
+    },
+    AMBUSH {
+        public String toString() {
+            return "Ambush";
+        }
+    },
+    PACK_TACTICS {
+        public String toString() {
+            return "Pack tactics";
+        }
+    },
+    STRIDER {
+        public String toString() {
+            return "Strider";
+        }
+    },
+    STRIDER_FOREST {
+        public String toString() {
+            return "Strider (Forest)";
+        }
+    },
+    INSIGNIFICANT {
+        public String toString() {
+            return "Insignificant";
+        }
+    },
+    VANGUARD {
+        public String toString() {
+            return "Vanguard";
+        }
+    },
+    BODYGUARD {
+        public String toString() {
+            return "Bodyguard";
+        }
+    },
+    DRUNKARD {
+        public String toString() {
+            return "Drunkard";
+        }
+    },
+    FRENZY {
+        public String toString() {
+            return "Frenzy";
+        }
+    },
+    AMBUSH_SCOUT {
+        public String toString() {
+            return "Ambush, Scout";
+        }
+    },
+    RANDOM_MOVEMENT_3D6 {
+        public String toString() {
+            return "Random movement (3D6)";
+        }
+    },
+    SLEEPER {
+        public String toString() {
+            return "Sleeper";
+        }
+    },
+    SWIFTSTRIDE {
+        public String toString() {
+            return "Swiftstride";
+        }
+    },
+    PARRY {
+        public String toString() {
+            return "Parry";
+        }
+    },
+    FLY {
+        public String toString() {
+            return "Fly";
+        }
+    },
+    MAGIC_RESISTANCE_3 {
+        public String toString() {
+            return "Magic resistance (3)";
+        }
+    },
+    HELLISH_GROWL {
+        public String toString() {
+            return "Hellish growl";
+        }
+    },
+    FALLING_STAR {
+        public String toString() {
+            return "Falling star";
+        }
+    },
+    VEIL_STALKER {
+        public String toString() {
+            return "Veil stalker";
+        }
+    },
+    HARD_TARGET {
+        public String toString() {
+            return "Hard target";
+        }
+    },
+    NOT_LEADER {
+        public String toString() {
+            return "Not a leader";
+        }
+    },
+    TOWERING_PRESENCE {
+        public String toString() {
+            return "Towering presence";
+        }
+    },
+    ELUSIVE {
+        public String toString() {
+            return "Elusive";
+        }
+    },
+    MORPHLINGS {
+        public String toString() {
+            return "Morphlings";
+        }
+    },
+    WAR_PLATFORM {
+        public String toString() {
+            return "War platform";
+        }
+    },
+    KRAKEN_HIDE {
+        public String toString() {
+            return "Kraken hide";
+        }
+    },
+    SCOUT {
+        public String toString() {
+            return "Scout";
+        }
+    },
+    CULT_YEMA {
+        public String toString() {
+            return "Cult of Yema";
+        }
+    },
+    STRIDER_WATER {
+        public String toString() {
+            return "Strider (Water)";
+        }
+    },
+    SCENT_OF_BLOOD {
+        public String toString() {
+            return "Scent of blood";
+        }
+    },
+    FEIGNED_FLIGHT {
+        public String toString() {
+            return "Petrifying stare";
+        }
+    },
+    DIVINE_BLESSINGS {
+        public String toString() {
+            return "Divine blessings";
+        }
+    },
+    MOUNTAIN_BREAKER {
+        public String toString() {
+            return "Mountain breaker";
+        }
+    },
+    HUNTING_HORN {
+        public String toString() {
+            return "Hunting horn";
+        }
+    },
+
 }

@@ -12,7 +12,10 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     private int ap; //armor piercing
     private int agi; //agility/initiative
     private int supportingAttacks;
-
+    private Dice multipleWounds;
+    private Dice impactHits;
+    private Dice stomp;
+    private Dice grindingHits;
     private int originalAtt;
     private int originalOff;
     private int originalStr;
@@ -29,7 +32,7 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     private boolean rerollHitBasic;
     private boolean rerollWound;
 
-    public OffensiveProfile(String name, int att, int off, int str, int ap, int agi, int supportingAttacks, List specialRules) {
+    public OffensiveProfile(String name, int att, int off, int str, int ap, int agi, int supportingAttacks, Dice multipleWounds, Dice impactHits, Dice stomp, Dice grindingHits, List specialRules) {
         this.name = name;
         this.att = att;
         this.originalAtt = att;
@@ -42,6 +45,10 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
         this.agi = agi;
         this.originalAgi = agi;
         this.supportingAttacks = supportingAttacks;
+        this.multipleWounds = multipleWounds;
+        this.impactHits = impactHits;
+        this.stomp = stomp;
+        this.grindingHits = grindingHits;
         this.specialRules = specialRules;
         this.rerollHit = false;
         this.rerollHitBasic = false;
@@ -201,6 +208,38 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
 
     public void setRerollHitBasic(boolean rerollHitBasic) {
         this.rerollHitBasic = rerollHitBasic;
+    }
+
+    public Dice getMultipleWounds() {
+        return multipleWounds;
+    }
+
+    public void setMultipleWounds(Dice multipleWounds) {
+        this.multipleWounds = multipleWounds;
+    }
+
+    public Dice getImpactHits() {
+        return impactHits;
+    }
+
+    public void setImpactHits(Dice impactHits) {
+        this.impactHits = impactHits;
+    }
+
+    public Dice getStomp() {
+        return stomp;
+    }
+
+    public void setStomp(Dice stomp) {
+        this.stomp = stomp;
+    }
+
+    public Dice getGrindingHits() {
+        return grindingHits;
+    }
+
+    public void setGrindingHits(Dice grindingHits) {
+        this.grindingHits = grindingHits;
     }
 
     @Override

@@ -87,6 +87,10 @@ public class Unit extends ArmybookEntry {
                     offensiveTemplate.getAp(),
                     offensiveTemplate.getAgi(),
                     offensiveTemplate.getSupportingAttacks(),
+                    offensiveTemplate.getMultipleWounds(),
+                    offensiveTemplate.getImpactHits(),
+                    offensiveTemplate.getStomp(),
+                    offensiveTemplate.getGrindingHits(),
                     offensiveTemplate.getSpecialRules());
             offensiveProfile.setUnitId(unitId);
             int index = offensiveTemplates.indexOf(offensiveTemplate);

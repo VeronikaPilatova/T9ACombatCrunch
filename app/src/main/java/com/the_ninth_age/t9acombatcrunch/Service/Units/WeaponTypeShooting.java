@@ -8,6 +8,11 @@ public enum WeaponTypeShooting {
     CROSSBOW {public String toString() {return "Crossbow";}},
     GUILD_CRAFTED_HANDGUN {public String toString() {return "Guild-crafted handgun";}},
     PISTOL {public String toString() {return "Pistol";}},
+    ENERGY_BOLTS {
+        public String toString() {
+            return "Energy bolts";
+        }
+    },
     NONE {public String toString() {return "None";}};
 
     public static WeaponTypeShooting fromString(String text) {

@@ -8,8 +8,11 @@ public class ArmybookEntry {
     protected int def; //defense skill
     protected int res; //resilience
     protected int arm; //armor
+    protected ArmorType armorType;
     protected int fortitudeSave;
     protected int aegisSave;
+    String adv;
+    String mar;
     protected int leadership;
     protected int baseWidth;
     protected int baseLength;
@@ -25,27 +28,32 @@ public class ArmybookEntry {
     protected List<OffensiveProfile> offensiveProfiles;
     protected List<Integer> offensiveProfileRepeat;
     protected List<Integer> championApplicableList;
+    protected List<Integer> stompApplicableList;
     protected List<List<WeaponType>> possibleWeaponsList;
     protected List<List<WeaponTypeShooting>> possibleShootingWeaponsList;
     protected Armybook armybook;
     protected List<SpecialRule> specialRules;
+    protected List<SpecialRule> optionalRules;
 
     public ArmybookEntry() {
     }
 
-    public ArmybookEntry(String name, int hp, int def, int res, int arm, int fortitudeSave, int aegisSave, int leadership,
+    public ArmybookEntry(String name, int hp, int def, int res, int arm, ArmorType armorType, int fortitudeSave, int aegisSave, String adv, String mar, int leadership,
                          int baseWidth, int baseLength, ModelHeight modelHeight, ModelType modelType, boolean onFoot, int supportingRows,
                          int minModels, int maxModels, int championPossible, int musicianPossible, int standardPossible,
-                         List<OffensiveProfile> offensiveProfiles, List<Integer> offensiveProfileRepeat, List<Integer> championApplicableList,
+                         List<OffensiveProfile> offensiveProfiles, List<Integer> offensiveProfileRepeat, List<Integer> championApplicableList, List<Integer> stompApplicableList,
                          List<List<WeaponType>> possibleWeaponsList, List<List<WeaponTypeShooting>> possibleShootingWeaponsList,
-                         Armybook armybook, List specialRules) {
+                         Armybook armybook, List specialRules, List optionalRules) {
         this.name = name;
         this.hp = hp;
         this.def = def;
         this.res = res;
         this.arm = arm;
+        this.armorType = armorType;
         this.fortitudeSave = fortitudeSave;
         this.aegisSave = aegisSave;
+        this.adv = adv;
+        this.mar = mar;
         this.leadership = leadership;
         this.baseWidth = baseWidth;
         this.baseLength = baseLength;
@@ -61,10 +69,12 @@ public class ArmybookEntry {
         this.offensiveProfiles = offensiveProfiles;
         this.offensiveProfileRepeat = offensiveProfileRepeat;
         this.championApplicableList = championApplicableList;
+        this.stompApplicableList = stompApplicableList;
         this.possibleWeaponsList = possibleWeaponsList;
         this.possibleShootingWeaponsList = possibleShootingWeaponsList;
         this.armybook = armybook;
         this.specialRules = specialRules;
+        this.optionalRules = optionalRules;
     }
 
     public String getName() {
@@ -259,5 +269,37 @@ public class ArmybookEntry {
 
     public void setSpecialRules(List newValue) {
         specialRules = newValue;
+    }
+
+    public ArmorType getArmorType() {
+        return armorType;
+    }
+
+    public void setArmorType(ArmorType armorType) {
+        this.armorType = armorType;
+    }
+
+    public String getAdv() {
+        return adv;
+    }
+
+    public void setAdv(String adv) {
+        this.adv = adv;
+    }
+
+    public String getMar() {
+        return mar;
+    }
+
+    public void setMar(String mar) {
+        this.mar = mar;
+    }
+
+    public List<SpecialRule> getOptionalRules() {
+        return optionalRules;
+    }
+
+    public void setOptionalRules(List<SpecialRule> optionalRules) {
+        this.optionalRules = optionalRules;
     }
 }
