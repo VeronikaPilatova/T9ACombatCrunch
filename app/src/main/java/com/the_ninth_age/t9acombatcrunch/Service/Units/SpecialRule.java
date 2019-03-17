@@ -145,5 +145,15 @@ public enum SpecialRule {
         public String toString() {
             return "Big brother";
         }
+    },
+    LIGHTNING_REFLEXES {
+        public String toString() {
+            return "Lightning reflexes";
+        }
+    },
+    HATRED {
+        public String toString() {
+            return "Hatred";
+        }
     }
 }

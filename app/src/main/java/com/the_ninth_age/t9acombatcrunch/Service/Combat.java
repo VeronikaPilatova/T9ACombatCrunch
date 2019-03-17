@@ -51,23 +51,7 @@ public class Combat {
 
         //special rules
         for (Unit unit : units) {
-            for (OffensiveProfile profile : unit.getOffensiveProfiles()) {
-                if (profile.getActualWeapon() == WeaponType.GIANT_CLUB) {
-                    profile.setStr(profile.getStr() + 1);
-                    profile.setAp(profile.getAp() + 1);
-                }
-                if (profile.getActualWeapon() == WeaponType.UPROOTED_TREE) {
-                    profile.setStr(5);
-                    profile.setAp(0);
-                }
-                if (profile.getSpecialRules().contains(SpecialRule.FLAMING_ATTACKS) && identifyOpposingUnit(identifyUnit(profile)).getSpecialRules().contains(SpecialRule.FLAMEABLE)) {
-                    profile.setRerollWound(true);
-                }
-            }
-        }
-
-        //discipline modifiers
-        for (Unit unit : units) {
+            //discipline modifiers
             if (unit.getGeneralLeadership() > 0) {
                 int leadership = max(unit.getGeneralLeadership(), unit.getLeadership());
                 unit.setLeadership(leadership);
@@ -77,6 +61,25 @@ public class Combat {
             }
             if (unit.getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEAR) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.FEARLESS) && !identifyOpposingUnit(unit).getSpecialRules().contains(SpecialRule.DRUNK)) {
                 identifyOpposingUnit(unit).setLeadership(unit.getLeadership() - 1);
+            }
+            //offensive special rules
+            //weapons
+            for (OffensiveProfile profile : unit.getOffensiveProfiles()) {
+                if (profile.getActualWeapon() == WeaponType.GREAT && !profile.getSpecialRules().contains(SpecialRule.LIGHTNING_REFLEXES)) {
+                    profile.setAgi(0);
+                }
+                if (profile.getActualWeapon() == WeaponType.GIANT_CLUB) {
+                    profile.setStr(profile.getStr() + 1);
+                    profile.setAp(profile.getAp() + 1);
+                }
+                if (profile.getActualWeapon() == WeaponType.UPROOTED_TREE) {
+                    profile.setStr(5);
+                    profile.setAp(0);
+                }
+                //special rules
+                if (profile.getSpecialRules().contains(SpecialRule.FLAMING_ATTACKS) && identifyOpposingUnit(identifyUnit(profile)).getSpecialRules().contains(SpecialRule.FLAMEABLE)) {
+                    profile.setRerollWound(true);
+                }
             }
         }
 
@@ -121,10 +124,16 @@ public class Combat {
             }
         }
         for (OffensiveProfile profile : allProfiles) {
-            if (profile.getSpecialRules().contains(SpecialRule.PRIMAL_INSTINCT)) {
-                Unit unit = identifyUnit(profile);
-                if (breakTestPassed(unit, 0)) {
+            //rules giving reroll for hit for this round: only when no reroll for whole combat
+            if (!profile.isRerollHitBasic()) {
+                profile.setRerollHit(false);
+                if (profile.getSpecialRules().contains(SpecialRule.HATRED) && round == 1) {
                     profile.setRerollHit(true);
+                }
+                if (profile.getSpecialRules().contains(SpecialRule.PRIMAL_INSTINCT) && !profile.isRerollHit()) {
+                    if (breakTestPassed(identifyUnit(profile), 0)) {
+                        profile.setRerollHit(true);
+                    }
                 }
             }
         }
@@ -284,6 +293,9 @@ public class Combat {
         difficulty = difficulty + identifyUnit(attacker).getFailedFear() - defender.getFailedFear();
         if (defender.getSpecialRules().contains(SpecialRule.DISTRACTING)) {
             difficulty += 1;
+        }
+        if (attacker.getSpecialRules().contains(SpecialRule.LIGHTNING_REFLEXES) && attacker.getActualWeapon() != WeaponType.GREAT) {
+            difficulty -= 1;
         }
         //return difficulty
         combatDescription.add("Needs to roll at least " + difficulty);
