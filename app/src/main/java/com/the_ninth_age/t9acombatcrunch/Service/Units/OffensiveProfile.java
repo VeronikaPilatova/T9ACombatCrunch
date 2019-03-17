@@ -18,14 +18,15 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     private int originalStr;
     private int originalAp;
     private int originalAgi;
-    List<SpecialRule> specialRules;
+    private List specialRules;
 
     private int countInUnit;
-    int championApplicable;
+    private int championApplicable;
     private WeaponType actualWeapon;
     private WeaponTypeShooting actualShootingWeapon;
     private int agiCurrent;
     private boolean rerollHit;
+    private boolean rerollHitBasic;
     private boolean rerollWound;
 
     public OffensiveProfile(String name, int att, int off, int str, int ap, int agi, int supportingAttacks, List specialRules) {
@@ -43,6 +44,7 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
         this.supportingAttacks = supportingAttacks;
         this.specialRules = specialRules;
         this.rerollHit = false;
+        this.rerollHitBasic = false;
         this.rerollWound = false;
     }
 
@@ -192,6 +194,14 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     public int getOriginalAgi() { return originalAgi; }
 
     public void setOriginalAgi(int originalAgi) { this.originalAgi = originalAgi; }
+
+    public boolean isRerollHitBasic() {
+        return rerollHitBasic;
+    }
+
+    public void setRerollHitBasic(boolean rerollHitBasic) {
+        this.rerollHitBasic = rerollHitBasic;
+    }
 
     @Override
     public int compareTo(OffensiveProfile otherProfile) {
