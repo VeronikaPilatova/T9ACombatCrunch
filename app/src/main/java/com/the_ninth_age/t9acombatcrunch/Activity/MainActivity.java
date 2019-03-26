@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.text.TextWatcher;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.the_ninth_age.t9acombatcrunch.R;
@@ -534,18 +535,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveUnit(View view) {
-        simulatorService.setUnitMakerAccessed(simulatorService.getUnitMakerAccessed() + 1);
-        int generalDisciplineLoaded;
-        if (general == 1) {
-            generalDisciplineLoaded = generalDiscipline;
+        if (modelCount == 0) {
+            Toast.makeText(MainActivity.this, "Please enter number of models", Toast.LENGTH_SHORT).show();
+        } else if (rowModels == 0) {
+            Toast.makeText(MainActivity.this, "Please enter number of models in one row", Toast.LENGTH_SHORT).show();
         } else {
-            generalDisciplineLoaded = 0;
-        }
-        simulatorService.saveUnit(unitNumber, armybookEntry, modelCount, rowModels, champion, musician, standard, generalDisciplineLoaded, bsb, charge, standAndShoot, weaponCC, weaponShooting, lostHp);
-        if (unitNumber == 1) {
-            repeatUnitCreation();
-        } else {
-            confirmation();
+            simulatorService.setUnitMakerAccessed(simulatorService.getUnitMakerAccessed() + 1);
+            int generalDisciplineLoaded;
+            if (general == 1) {
+                generalDisciplineLoaded = generalDiscipline;
+            } else {
+                generalDisciplineLoaded = 0;
+            }
+            simulatorService.saveUnit(unitNumber, armybookEntry, modelCount, rowModels, champion, musician, standard, generalDisciplineLoaded, bsb, charge, standAndShoot, weaponCC, weaponShooting, lostHp);
+            if (unitNumber == 1) {
+                repeatUnitCreation();
+            } else {
+                confirmation();
+            }
         }
     }
 
