@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.the_ninth_age.t9acombatcrunch.R;
 import com.the_ninth_age.t9acombatcrunch.Service.SimulatorService;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.ArmybookEntry;
+import com.the_ninth_age.t9acombatcrunch.Service.Units.Dice;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.OffensiveProfile;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.SpecialRule;
 
@@ -190,8 +191,8 @@ public class StatsActivity extends AppCompatActivity {
         unitType = armybookEntry.getModelType().toString();
         baseWidth = armybookEntry.getBaseWidth();
         baseLength = armybookEntry.getBaseLength();
-        adv = "N/A";
-        mar = "N/A";
+        adv = armybookEntry.getAdv();
+        mar = armybookEntry.getMar();
         dis = armybookEntry.getLeadership();
         hp = armybookEntry.getHp();
         def = armybookEntry.getDef();
@@ -199,7 +200,7 @@ public class StatsActivity extends AppCompatActivity {
         arm = armybookEntry.getArm();
         fortitude = armybookEntry.getFortitudeSave();
         aegis = armybookEntry.getAegisSave();
-        armorType = "N/A";
+        armorType = armybookEntry.getArmorType().toString();
         offensiveProfileList = armybookEntry.getOffensiveProfiles();
         specialRuleList = armybookEntry.getSpecialRules();
     }
@@ -230,7 +231,7 @@ public class StatsActivity extends AppCompatActivity {
                 textview_stats_str_list.get(i).setText("" + profile.getStr());
                 textview_stats_ap_list.get(i).setText("" + profile.getAp());
                 textview_stats_agi_list.get(i).setText("" + profile.getAgi());
-                textview_stats_specialrulesOP_list.get(i).setText(specialRulesToString(profile.getSpecialRules()));
+                textview_stats_specialrulesOP_list.get(i).setText(specialProfileRulesToString(profile));
                 tablerow_stats_list.get(i).setVisibility(View.VISIBLE);
                 tablerow_stats_specialrulesOP_list.get(i).setVisibility(View.VISIBLE);
             } else {
@@ -270,6 +271,22 @@ public class StatsActivity extends AppCompatActivity {
         } else {
             return "";
         }
+    }
+
+    private String specialProfileRulesToString(OffensiveProfile profile) {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> list = new ArrayList<>();
+        if (profile.getMultipleWounds() != Dice.NONE) {
+            stringBuilder.append("Multiple wounds " + profile.getMultipleWounds().toString() + ", ");
+        }
+        if (profile.getImpactHits() != Dice.NONE) {
+            stringBuilder.append("Impact hits " + profile.getImpactHits().toString() + ", ");
+        }
+        if (profile.getGrindingHits() != Dice.NONE) {
+            stringBuilder.append("Grinding attack " + profile.getGrindingHits().toString() + ", ");
+        }
+        stringBuilder.append(specialRulesToString(profile.getSpecialRules()));
+        return stringBuilder.toString();
     }
 
 

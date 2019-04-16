@@ -72,11 +72,96 @@
                 android:background="@color/brown" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/numbers"
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:id="@+id/numbers_overall"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="numbers" />
+            android:layout_marginTop="16dp">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Unit1\ndestroyed" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Unit1\nfled" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Combat\ncontinues" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Unit2\nfled" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Unit2\ndestroyed" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Mutual\ndestruction" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/numbers_unit1_destroyed_overall"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/numbers_unit1_fled_overall"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/numbers_combat_continues_overall"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/numbers_unit2_fled_overall"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/numbers_unit2_destroyed_overall"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/numbers_mutual_destruction_overall"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </TableRow>
+        </TableLayout>
 
         <Button
             android:id="@+id/button_redo_units_result"
@@ -84,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/result_change_the_units"
-            android:layout_marginBottom="30dp"/>
+            android:layout_margin="30dp" />
 
         <TextView
             android:id="@+id/title_result_1"

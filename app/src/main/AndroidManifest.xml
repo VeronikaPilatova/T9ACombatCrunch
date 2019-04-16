@@ -19,7 +19,9 @@
         <activity android:name=".Activity.ConfirmationActivity" />
         <activity android:name=".Activity.ResultActivity" />
         <activity android:name=".Activity.DebugActivity" />
-        <activity android:name=".Activity.StatsActivity"></activity>
+        <activity
+            android:name=".Activity.StatsActivity"
+            android:parentActivityName=".Activity.MainActivity"></activity>
     </application>
 
 </manifest>

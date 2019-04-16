@@ -31,6 +31,12 @@ public class ResultActivity extends AppCompatActivity {
     TextView bar_unit2_fled_overall;
     TextView bar_unit2_destroyed_overall;
     TextView bar_mutual_destruction_overall;
+    TextView numbers_unit1_destroyed_overall;
+    TextView numbers_unit1_fled_overall;
+    TextView numbers_combat_continues_overall;
+    TextView numbers_unit2_fled_overall;
+    TextView numbers_unit2_destroyed_overall;
+    TextView numbers_mutual_destruction_overall;
     Button button_redo_units;
 
     List<TextView> list_results_title;
@@ -43,7 +49,6 @@ public class ResultActivity extends AppCompatActivity {
     List<TextView> list_results_mutual_destruction;
 
     int rounds;
-
 
 
     @Override
@@ -65,6 +70,12 @@ public class ResultActivity extends AppCompatActivity {
         bar_unit2_destroyed_overall = (TextView) findViewById(R.id.bar_unit2_destroyed_overall);
         bar_mutual_destruction_overall = (TextView) findViewById(R.id.bar_mutual_destruction_overall);
         button_redo_units = (Button) findViewById(R.id.button_redo_units_result);
+        numbers_unit1_destroyed_overall = (TextView) findViewById(R.id.numbers_unit1_destroyed_overall);
+        numbers_unit1_fled_overall = (TextView) findViewById(R.id.numbers_unit1_fled_overall);
+        numbers_combat_continues_overall = (TextView) findViewById(R.id.numbers_combat_continues_overall);
+        numbers_unit2_fled_overall = (TextView) findViewById(R.id.numbers_unit2_fled_overall);
+        numbers_unit2_destroyed_overall = (TextView) findViewById(R.id.numbers_unit2_destroyed_overall);
+        numbers_mutual_destruction_overall = (TextView) findViewById(R.id.numbers_mutual_destruction_overall);
 
         list_results_title = Arrays.asList((TextView) findViewById(R.id.title_result_1), (TextView) findViewById(R.id.title_result_2), (TextView) findViewById(R.id.title_result_3), (TextView) findViewById(R.id.title_result_4), (TextView) findViewById(R.id.title_result_5), (TextView) findViewById(R.id.title_result_6), (TextView) findViewById(R.id.title_result_7), (TextView) findViewById(R.id.title_result_8), (TextView) findViewById(R.id.title_result_9), (TextView) findViewById(R.id.title_result_10), (TextView) findViewById(R.id.title_result_11), (TextView) findViewById(R.id.title_result_12));
         list_results_chart = Arrays.asList((LinearLayout) findViewById(R.id.chart_result_1), (LinearLayout) findViewById(R.id.chart_result_2), (LinearLayout) findViewById(R.id.chart_result_3), (LinearLayout) findViewById(R.id.chart_result_4), (LinearLayout) findViewById(R.id.chart_result_5), (LinearLayout) findViewById(R.id.chart_result_6), (LinearLayout) findViewById(R.id.chart_result_7), (LinearLayout) findViewById(R.id.chart_result_8), (LinearLayout) findViewById(R.id.chart_result_9), (LinearLayout) findViewById(R.id.chart_result_10), (LinearLayout) findViewById(R.id.chart_result_11), (LinearLayout) findViewById(R.id.chart_result_12));
@@ -95,7 +106,6 @@ public class ResultActivity extends AppCompatActivity {
                 list_results_chart.get(i).setVisibility(View.GONE);
             }
         }
-
         displayResultFullStatus();
 
 
@@ -140,16 +150,12 @@ public class ResultActivity extends AppCompatActivity {
         bar_unit2_destroyed_overall.setLayoutParams(new LinearLayout.LayoutParams(unit2_destroyed_overall * 3,30));
         bar_unit2_fled_overall.setLayoutParams(new LinearLayout.LayoutParams(unit2_fled_overall * 3,30));
         bar_mutual_destruction_overall.setLayoutParams(new LinearLayout.LayoutParams(mutual_destruction_overall * 3,30));
-
-        //for testing purposes
-        TextView numbers = (TextView) findViewById(R.id.numbers);
-        String text = "Unit 1 destroyed: " + unit1_destroyed_overall + "\n"
-                + "Unit 1 fled: " + unit1_fled_overall + "\n"
-                + "Combat continues: " + combat_continues_overall + "\n"
-                + "Unit 2 fled: " + unit2_fled_overall + "\n"
-                + "Unit 2 destroyed: " + unit2_destroyed_overall + "\n"
-                + "Mutual destruction: " + mutual_destruction_overall;
-        numbers.setText(text);
+        numbers_unit1_destroyed_overall.setText(unit1_destroyed_overall + "");
+        numbers_unit1_fled_overall.setText(unit1_fled_overall + "");
+        numbers_combat_continues_overall.setText(combat_continues_overall + "");
+        numbers_unit2_fled_overall.setText(unit2_fled_overall + "");
+        numbers_unit2_destroyed_overall.setText(unit2_destroyed_overall + "");
+        numbers_mutual_destruction_overall.setText(mutual_destruction_overall + "");
     }
 
     private void displayResultFullStatus() {
@@ -192,16 +198,12 @@ public class ResultActivity extends AppCompatActivity {
         bar_unit2_destroyed_overall.setLayoutParams(new LinearLayout.LayoutParams(unit2_destroyed_overall * 3,30));
         bar_unit2_fled_overall.setLayoutParams(new LinearLayout.LayoutParams(unit2_fled_overall * 3,30));
         bar_mutual_destruction_overall.setLayoutParams(new LinearLayout.LayoutParams(mutual_destruction_overall * 3,30));
-
-        //for testing purposes
-        TextView numbers = (TextView) findViewById(R.id.numbers);
-        String text = "Unit 1 destroyed: " + unit1_destroyed_overall + "\n"
-                + "Unit 1 fled: " + unit1_fled_overall + "\n"
-                + "Combat continues: " + combat_continues_overall + "\n"
-                + "Unit 2 fled: " + unit2_fled_overall + "\n"
-                + "Unit 2 destroyed: " + unit2_destroyed_overall + "\n"
-                + "Mutual destruction: " + mutual_destruction_overall;
-        numbers.setText(text);
+        numbers_unit1_destroyed_overall.setText(unit1_destroyed_overall + "");
+        numbers_unit1_fled_overall.setText(unit1_fled_overall + "");
+        numbers_combat_continues_overall.setText(combat_continues_overall + "");
+        numbers_unit2_fled_overall.setText(unit2_fled_overall + "");
+        numbers_unit2_destroyed_overall.setText(unit2_destroyed_overall + "");
+        numbers_mutual_destruction_overall.setText(mutual_destruction_overall + "");
     }
 
     //launching activities
