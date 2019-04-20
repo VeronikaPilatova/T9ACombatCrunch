@@ -11,8 +11,8 @@ public class ArmybookEntry {
     protected ArmorType armorType;
     protected int fortitudeSave;
     protected int aegisSave;
-    String adv;
-    String mar;
+    protected String adv;
+    protected String mar;
     protected int leadership;
     protected int baseWidth;
     protected int baseLength;
@@ -301,5 +301,17 @@ public class ArmybookEntry {
 
     public void setOptionalRules(List<SpecialRule> optionalRules) {
         this.optionalRules = optionalRules;
+    }
+
+    public int getArmorSave() {
+        int armor = arm;
+        if (armorType == ArmorType.LIGHT) {
+            armor += 1;
+        } else if (armorType == ArmorType.HEAVY) {
+            armor += 2;
+        } else if (armorType == ArmorType.PLATE) {
+            armor += 3;
+        }
+        return 7 - armor;
     }
 }

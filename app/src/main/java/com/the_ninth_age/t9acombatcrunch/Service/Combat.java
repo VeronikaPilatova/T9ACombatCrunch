@@ -2,6 +2,7 @@ package com.the_ninth_age.t9acombatcrunch.Service;
 
 import com.the_ninth_age.t9acombatcrunch.Service.Result.CombatOutcome;
 import com.the_ninth_age.t9acombatcrunch.Service.Result.Outcome;
+import com.the_ninth_age.t9acombatcrunch.Service.Units.Dice;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.OffensiveProfile;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.SpecialRule;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.Unit;
@@ -323,7 +324,7 @@ public class Combat {
 
     public int getArmorDifficulty(OffensiveProfile attacker, Unit defender) {
         combatDescription.add("Rolling for armor");
-        int difficulty = max((defender.getArm() + attacker.getAp()), 2);
+        int difficulty = max((defender.getArmorSave() + attacker.getAp()), 2);
         combatDescription.add("Needs to roll at least " + difficulty);
         return difficulty;
     }
@@ -352,6 +353,21 @@ public class Combat {
             combatDescription.add("Needs to roll at least " + specialSave);
             return specialSave;
         }
+    }
+
+    public int multiplyWounds(int wounds, OffensiveProfile attacker, Unit defender) {
+        int multipliedWounds = wounds;
+        if (attacker.getMultipleWounds() != Dice.NONE) {
+            multipliedWounds = 0;
+            for (int i = 0; i < wounds; i++) {
+                multipliedWounds += min(attacker.getMultipleWounds().toNumber(), defender.getHp());
+                if (attacker.getSpecialRules().contains(SpecialRule.CLIPPED_WINGS) && defender.getSpecialRules().contains(SpecialRule.FLY)) {
+                    multipliedWounds += 1;
+                }
+            }
+            combatDescription.add(wounds + " wounds multiplied to " + multipliedWounds);
+        }
+        return multipliedWounds;
     }
 
     public int rollSuccess(int times, int difficulty, boolean reroll, boolean rerollNegative) {
@@ -440,10 +456,14 @@ public class Combat {
             }
             woundsAfterSpecialSaves -= rollSuccess(woundsToSave, getSpecialSavesDifficulty(attacker, defender), false, rerollSpecialSavesNeg);
         }
-        //save the numbers
-        defender.setWoundsOnAgiStep(defender.getWoundsOnAgiStep() + woundsAfterSpecialSaves);
-        defender.setWoundsInRound(defender.getWoundsInRound() + woundsAfterSpecialSaves);
-        combatDescription.add("Inflicted " + woundsAfterSpecialSaves + " wounds");
+        int finalWounds = multiplyWounds(woundsAfterSpecialSaves, attacker, defender);
+        saveInflictedWounds(finalWounds, defender);
+    }
+
+    public void saveInflictedWounds(int wounds, Unit defender) {
+        defender.setWoundsOnAgiStep(defender.getWoundsOnAgiStep() + wounds);
+        defender.setWoundsInRound(defender.getWoundsInRound() + wounds);
+        combatDescription.add("Inflicted " + wounds + " wounds");
     }
 
     public void removeCasualties(Unit defender) {

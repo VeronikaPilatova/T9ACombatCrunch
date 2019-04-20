@@ -391,5 +391,10 @@ public enum SpecialRule {
             return "Hunting horn";
         }
     },
+    CLIPPED_WINGS {
+        public String toString() {
+            return "Clipped wings";
+        }
+    },
 
 }
