@@ -541,19 +541,23 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Please enter number of models in one row", Toast.LENGTH_SHORT).show();
         } else {
             simulatorService.setUnitMakerAccessed(simulatorService.getUnitMakerAccessed() + 1);
-            int generalDisciplineLoaded;
-            if (general == 1) {
-                generalDisciplineLoaded = generalDiscipline;
-            } else {
-                generalDisciplineLoaded = 0;
-            }
-            simulatorService.saveUnit(unitNumber, armybookEntry, modelCount, rowModels, champion, musician, standard, generalDisciplineLoaded, bsb, charge, standAndShoot, weaponCC, weaponShooting, lostHp);
+            saveUnitInProgress();
             if (unitNumber == 1) {
                 repeatUnitCreation();
             } else {
                 confirmation();
             }
         }
+    }
+
+    private void saveUnitInProgress() {
+        int generalDisciplineLoaded;
+        if (general == 1) {
+            generalDisciplineLoaded = generalDiscipline;
+        } else {
+            generalDisciplineLoaded = 0;
+        }
+        simulatorService.saveUnit(unitNumber, armybookEntry, modelCount, rowModels, champion, musician, standard, generalDisciplineLoaded, bsb, charge, standAndShoot, weaponCC, weaponShooting, lostHp);
     }
 
     //launching activities
@@ -576,6 +580,7 @@ public class MainActivity extends AppCompatActivity {
     //display stats
     private void stats(View view) {
         Intent intent = new Intent(this, StatsActivity.class);
+        saveUnitInProgress();
         intent.putExtra("unitName", armybookEntry);
         String serviceJson = gson.toJson(simulatorService);
         intent.putExtra("simulatorService", serviceJson);

@@ -132,14 +132,6 @@
                 <TextView
                     android:layout_marginRight="16dp"
                     android:text="Arm" />
-
-                <TextView
-                    android:layout_marginRight="16dp"
-                    android:text="Fortitude" />
-
-                <TextView
-                    android:layout_marginRight="16dp"
-                    android:text="Aegis" />
             </TableRow>
 
             <TableRow>
@@ -167,6 +159,30 @@
                     android:id="@+id/textview_stats_arm"
                     android:layout_marginRight="16dp"
                     android:text="0" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tablerow_stats_specialSaves_title">
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/textview_stats_fortitude_title"
+                    android:layout_marginRight="16dp"
+                    android:text="Fortitude" />
+
+                <TextView
+                    android:id="@+id/textview_stats_aegis_title"
+                    android:layout_marginRight="16dp"
+                    android:text="Aegis" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tablerow_stats_specialSaves">
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textview_stats_fortitude"

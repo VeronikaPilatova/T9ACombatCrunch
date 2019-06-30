@@ -17,6 +17,8 @@ import com.the_ninth_age.t9acombatcrunch.Service.Units.Dice;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.OffensiveProfile;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.SpecialRule;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +43,10 @@ public class StatsActivity extends AppCompatActivity {
     TextView textview_stats_fortitude;
     TextView textview_stats_aegis;
     TextView textview_stats_armor_type;
+    TextView textview_stats_fortitude_title;
+    TextView textview_stats_aegis_title;
+    TableRow tablerow_stats_specialSaves;
+    TableRow tablerow_stats_specialSaves_title;
     List<TableRow> tablerow_stats_list;
     List<TextView> textview_stats_profileName_list;
     List<TextView> textview_stats_att_list;
@@ -101,6 +107,10 @@ public class StatsActivity extends AppCompatActivity {
         textview_stats_arm = (TextView) findViewById(R.id.textview_stats_arm);
         textview_stats_fortitude = (TextView) findViewById(R.id.textview_stats_fortitude);
         textview_stats_aegis = (TextView) findViewById(R.id.textview_stats_aegis);
+        textview_stats_fortitude_title = (TextView) findViewById(R.id.textview_stats_fortitude_title);
+        textview_stats_aegis_title = (TextView) findViewById(R.id.textview_stats_aegis_title);
+        tablerow_stats_specialSaves = (TableRow) findViewById(R.id.tablerow_stats_specialSaves);
+        tablerow_stats_specialSaves_title = (TableRow) findViewById(R.id.tablerow_stats_specialSaves_title);
         textview_stats_armor_type = (TextView) findViewById(R.id.textview_stats_armor_type);
         tablerow_stats_list = Arrays.asList((TableRow) findViewById(R.id.tablerow_stats_OP1), (TableRow) findViewById(R.id.tablerow_stats_OP2), (TableRow) findViewById(R.id.tablerow_stats_OP3), (TableRow) findViewById(R.id.tablerow_stats_OP4), (TableRow) findViewById(R.id.tablerow_stats_OP5), (TableRow) findViewById(R.id.tablerow_stats_OP6));
         textview_stats_profileName_list = Arrays.asList((TextView) findViewById(R.id.textview_stats_profileName_OP1), (TextView) findViewById(R.id.textview_stats_profileName_OP2), (TextView) findViewById(R.id.textview_stats_profileName_OP3), (TextView) findViewById(R.id.textview_stats_profileName_OP4), (TextView) findViewById(R.id.textview_stats_profileName_OP5), (TextView) findViewById(R.id.textview_stats_profileName_OP6));
@@ -217,8 +227,31 @@ public class StatsActivity extends AppCompatActivity {
         textview_stats_def.setText("" + def);
         textview_stats_res.setText("" + res);
         textview_stats_arm.setText("" + arm);
-        textview_stats_fortitude.setText("" + fortitude);
-        textview_stats_aegis.setText("" + aegis);
+        //display special saves is available, hide fields when not
+        if (fortitude != 0) {
+            textview_stats_fortitude.setText("" + fortitude);
+            textview_stats_fortitude_title.setVisibility(View.VISIBLE);
+            textview_stats_fortitude.setVisibility(View.VISIBLE);
+        } else {
+            textview_stats_fortitude_title.setVisibility(View.GONE);
+            textview_stats_fortitude.setVisibility(View.GONE);
+        }
+        if (aegis != 0) {
+            textview_stats_aegis.setText("" + aegis);
+            textview_stats_aegis_title.setVisibility(View.VISIBLE);
+            textview_stats_aegis.setVisibility(View.VISIBLE);
+        } else {
+            textview_stats_aegis_title.setVisibility(View.GONE);
+            textview_stats_aegis.setVisibility(View.GONE);
+        }
+        if (fortitude == 0 && aegis == 0) {
+            tablerow_stats_specialSaves_title.setVisibility(View.GONE);
+            tablerow_stats_specialSaves.setVisibility(View.GONE);
+        } else {
+            tablerow_stats_specialSaves_title.setVisibility(View.VISIBLE);
+            tablerow_stats_specialSaves.setVisibility(View.VISIBLE);
+        }
+
         textview_stats_armor_type.setText(armorType);
         textview_stats_specialrules.setText(specialRulesToString(specialRuleList));
 
