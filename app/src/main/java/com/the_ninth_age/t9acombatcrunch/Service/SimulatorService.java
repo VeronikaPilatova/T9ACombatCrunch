@@ -62,7 +62,7 @@ public class SimulatorService {
     }
 
     public Unit saveUnit(int number, String armybookEntryName, int modelCount, int rowModels, int champion, int musician, int standard, int generalLeadership, int bsb, int charge, int standAndShoot, String ccWeapon, String shootingWeapon, int lostHp) {
-        ArmybookEntry armybookEntry = armybookEntryRepository.findSpecific(armybookEntryName);
+        ArmybookEntry armybookEntry = getArmybookEntry(armybookEntryName);
         List<WeaponType> actualWeapons = new ArrayList<>();
         //if a list of possible weapons for an offensive profile only has one choice, add it to the actual list, otherwise use what the front end provided
         for (List<WeaponType> possibleWeapons : armybookEntry.getPossibleWeaponsList()) {
