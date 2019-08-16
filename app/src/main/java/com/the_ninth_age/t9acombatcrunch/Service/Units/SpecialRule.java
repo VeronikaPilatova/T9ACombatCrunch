@@ -93,7 +93,7 @@ public enum SpecialRule {
     },
     UNSTABLE {
         public String toString() {
-            return "Great weapon";
+            return "Unstable";
         }
     },
     LIGHT_TROOPS {
@@ -396,5 +396,61 @@ public enum SpecialRule {
             return "Clipped wings";
         }
     },
+    STURDY {
+        public String toString() {
+            return "Sturdy";
+        }
+    },
+    WEAPONMASTER {
+        public String toString() {
+            return "Weapon master";
+        }
+    },
+    COMIN_WITH_ME {
+        public String toString() {
+            return "Yer comin' with me!";
+        }
+    },
+    MAGIC_ATTACK {
+        public String toString() {
+            return "Magical attack";
+        }
+    },
+    SHIELD_WALL {
+        public String toString() {
+            return "Shield wall";
+        }
+    },
+    SEEN_ALL {
+        public String toString() {
+            return "Seen it all";
+        }
+    },
+    BIGGER_THEY_ARE {
+        public String toString() {
+            return "The bigger they are...";
+        }
+    },
+    WALL_OF_IRON {
+        public String toString() {
+            return "Wall of iron";
+        }
+    },
+    RUNIC_ENGRAVINGS {
+        public String toString() {
+            return "Runic engravings";
+        }
+    },
+    TALL {
+        public String toString() {
+            return "Tall";
+        }
+    },
+    ENGINEERING_RUNE {
+        public String toString() {
+            return "Engineering rune";
+        }
+    }
+
 
 }

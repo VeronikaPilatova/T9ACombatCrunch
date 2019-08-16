@@ -53,7 +53,18 @@ public enum Dice {
         @Override
         public int toNumber() {
             Random random = new Random();
-            return (random.nextInt(3) + 1) * 2;
+            return (random.nextInt(3) + 1) + (random.nextInt(3) + 1);
+        }
+    },
+    D3TIMES3 {
+        public String toString() {
+            return "(3D3)";
+        }
+
+        @Override
+        public int toNumber() {
+            Random random = new Random();
+            return (random.nextInt(3) + 1) + (random.nextInt(3) + 1) + (random.nextInt(3) + 1);
         }
     },
     D3AND1 {

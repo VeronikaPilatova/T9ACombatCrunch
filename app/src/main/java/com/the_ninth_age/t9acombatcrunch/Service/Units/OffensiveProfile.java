@@ -72,9 +72,11 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     }
 
     public int getAtt() {
+        Random randomGenerator = new Random();
         if (specialRules.contains(SpecialRule.BRIAR_BEAST)) {
-            Random randomGenerator = new Random();
             return randomGenerator.nextInt(6) + 2;
+        } else if (name.equals("Vengeance Seeker")) {
+            return randomGenerator.nextInt(3) + randomGenerator.nextInt(3) + randomGenerator.nextInt(3) + 3;
         } else {
             return att;
         }

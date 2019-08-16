@@ -13,6 +13,16 @@ public enum WeaponTypeShooting {
             return "Energy bolts";
         }
     },
+    FORGE_REPEATER {
+        public String toString() {
+            return "Forge repeater";
+        }
+    },
+    FORGE_GUN {
+        public String toString() {
+            return "Forge gun";
+        }
+    },
     NONE {public String toString() {return "None";}};
 
     public static WeaponTypeShooting fromString(String text) {

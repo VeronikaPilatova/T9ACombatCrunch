@@ -31,6 +31,7 @@ public class OffensiveProfileRepository {
             new OffensiveProfile("Gortach", 6, 4, 6, 3, 3, 1, Dice.NONE, Dice.D3, Dice.D6, Dice.NONE, Arrays.asList(SpecialRule.BATTLE_FOCUS, SpecialRule.LETHAL_STRIKE, SpecialRule.PRIMAL_INSTINCT, SpecialRule.STRENGTH_FROM_FLESH)),
             new OffensiveProfile("Jabberwock", 4, 4, 5, 2, 3, 1, Dice.NONE, Dice.NONE, Dice.D6, Dice.NONE, Arrays.asList(SpecialRule.POISON)),
             new OffensiveProfile("Beast Giant", 5, 3, 5, 2, 3, 1, Dice.NONE, Dice.NONE, Dice.D6, Dice.NONE, Arrays.asList(SpecialRule.RAGE)),
+
             new OffensiveProfile("Imp", 1, 2, 2, 0, 3, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList()),
             new OffensiveProfile("Succubus", 3, 4, 3, 1, 5, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList()),
             new OffensiveProfile("Lemure", 1, 3, 3, 0, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList()),
@@ -54,6 +55,7 @@ public class OffensiveProfileRepository {
             new OffensiveProfile("Fury", 1, 3, 4, 1, 4, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList()),
             new OffensiveProfile("Veil Serpent", 3, 4, 4, 1, 4, 3, Dice.NONE, Dice.NONE, Dice.ONE, Dice.NONE, Arrays.asList()),
             new OffensiveProfile("Bloat Fly", 2, 3, 5, 1, 1, 3, Dice.NONE, Dice.NONE, Dice.ONE, Dice.NONE, Arrays.asList(SpecialRule.ACID_BLOOD)),
+
             new OffensiveProfile("Dread Legionnaire", 1, 4, 3, 0, 5, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.KILLER_INSTINCT, SpecialRule.LIGHTNING_REFLEXES)),
             new OffensiveProfile("Corsair", 1, 4, 3, 0, 5, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.KILLER_INSTINCT, SpecialRule.LIGHTNING_REFLEXES)),
             new OffensiveProfile("Blade of Nabh", 2, 4, 3, 0, 6, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.CULT_NABH, SpecialRule.LIGHTNING_REFLEXES, SpecialRule.POISON)),
@@ -72,7 +74,22 @@ public class OffensiveProfileRepository {
             new OffensiveProfile("Altar Disciple", 1, 4, 3, 0, 5, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.KILLER_INSTINCT, SpecialRule.LIGHTNING_REFLEXES, SpecialRule.POISON)),
             new OffensiveProfile("Avatar of the Gods", 4, 5, 5, 2, 5, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList()),
             new OffensiveProfile("Kraken", 4, 5, 7, 4, 3, 5, Dice.D3, Dice.NONE, Dice.D6, Dice.NONE, Arrays.asList(SpecialRule.POISON)),
-            new OffensiveProfile("Hydra", 7, 5, 5, 2, 2, 5, Dice.NONE, Dice.NONE, Dice.D6, Dice.NONE, Arrays.asList())
+            new OffensiveProfile("Hydra", 7, 5, 5, 2, 2, 5, Dice.NONE, Dice.NONE, Dice.D6, Dice.NONE, Arrays.asList()),
+
+            new OffensiveProfile("Clan Warrior", 1, 4, 3, 0, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY)),
+            new OffensiveProfile("Greybeard", 1, 5, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY)),
+            new OffensiveProfile("Clan Marksman", 1, 4, 3, 0, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY)),
+            new OffensiveProfile("Deep Watch", 1, 5, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY)),
+            new OffensiveProfile("King's Guard", 2, 5, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY)),
+            new OffensiveProfile("Miner", 1, 4, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY)),
+            new OffensiveProfile("Ranger", 1, 4, 3, 0, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY)),
+            new OffensiveProfile("Seeker", 1, 4, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY, SpecialRule.WEAPONMASTER, SpecialRule.COMIN_WITH_ME)),
+            new OffensiveProfile("Vengeance Seeker", 3, 5, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.COMIN_WITH_ME)),
+            new OffensiveProfile("Hold Guardian", 3, 4, 5, 2, 2, 3, Dice.NONE, Dice.NONE, Dice.ONE, Dice.NONE, Arrays.asList(SpecialRule.MAGIC_ATTACK)),
+            new OffensiveProfile("Chassis (Grudge Buster)", 0, 0, 5, 2, 2, 3, Dice.NONE, Dice.D6AND1, Dice.NONE, Dice.D3TIMES3, Arrays.asList()),
+            new OffensiveProfile("Dwarf Crew", 1, 4, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList()),
+            new OffensiveProfile("Forge Warden", 1, 4, 4, 1, 2, 1, Dice.NONE, Dice.NONE, Dice.NONE, Dice.NONE, Arrays.asList(SpecialRule.STURDY))
+
     ));
 
     public OffensiveProfile findSpecific(String name) {

@@ -24,6 +24,11 @@ public enum WeaponType {
             return "Executioner's blade";
         }
     },
+    WHIRLING_CHAINS {
+        public String toString() {
+            return "Whirling chains of doom";
+        }
+    },
     NONE {public String toString() {return "None";}};
 
     public static WeaponType fromString(String text) {
