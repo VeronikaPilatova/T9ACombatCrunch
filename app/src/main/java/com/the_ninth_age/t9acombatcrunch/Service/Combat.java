@@ -3,6 +3,8 @@ package com.the_ninth_age.t9acombatcrunch.Service;
 import com.the_ninth_age.t9acombatcrunch.Service.Result.CombatOutcome;
 import com.the_ninth_age.t9acombatcrunch.Service.Result.Outcome;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.Dice;
+import com.the_ninth_age.t9acombatcrunch.Service.Units.ModelHeight;
+import com.the_ninth_age.t9acombatcrunch.Service.Units.ModelType;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.OffensiveProfile;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.SpecialRule;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.Unit;
@@ -140,18 +142,53 @@ public class Combat {
         }
 
         //roll the dice
+        //impact hits
+        if (round == 1) {
+            for (OffensiveProfile profile : allProfiles) {
+                if (profile.getImpactHits() != Dice.NONE && identifyUnit(profile).getCharge() == 1) {
+                    Unit defender = identifyOpposingUnit(identifyUnit(profile));
+                    combatDescription.add("Impact hits from " + profile.getName());
+                    killedNoSpecialRules(profile, defender, profile.getImpactHits().toNumber());
+                }
+                //remove killed models unless the first profile to attack is also on initiative step 10
+                if (allProfiles.get(0).getAgiCurrent() != 10) {
+                    removeCasualties(unit1);
+                    removeCasualties(unit2);
+                }
+            }
+        }
+        //standard combat
         for (OffensiveProfile profile : allProfiles) {
             combatDescription.add(profile.getName() + " attacking");
             killedModelsOP(profile, identifyOpposingUnit(identifyUnit(profile)));
-            if (!nextProfileSimultaneous(allProfiles, profile)) {
+            //grinding attacks
+            if (profile.getGrindingHits() != Dice.NONE && !(round == 1 && identifyUnit(profile).getCharge() == 1 && profile.getImpactHits() != Dice.NONE)) {
+                Unit defender = identifyOpposingUnit(identifyUnit(profile));
+                combatDescription.add(profile.getName() + " grinding");
+                killedNoSpecialRules(profile, defender, profile.getGrindingHits().toNumber());
+            }
+            //remove killed models if this initiative step is finished
+            if (!nextProfileSimultaneous(allProfiles, profile) && !(nextProfileStomp(allProfiles, profile) && profile.getAgiCurrent() == 0)) {
                 removeCasualties(unit1);
                 removeCasualties(unit2);
             }
         }
+        //stomp
+        for (OffensiveProfile profile : allProfiles) {
+            if (profile.getStomp() != Dice.NONE) {
+                Unit defender = identifyOpposingUnit(identifyUnit(profile));
+                if (defender.getModelHeight() == ModelHeight.STANDARD && defender.getModelType() != ModelType.CAVALRY) {
+                    combatDescription.add(profile.getName() + " stomping");
+                    killedNoSpecialRules(profile, defender, profile.getStomp().toNumber());
+                }
+            }
+        }
+        removeCasualties(unit1);
+        removeCasualties(unit2);
+        //if no unit is destroyed roll for break test
         if (outcome == null) {
             combatScoreAndBreakTest();
         }
-
     }
 
     public int getUnitWidth(Unit unit) {
@@ -486,6 +523,24 @@ public class Combat {
         }
     }
 
+    public void killedNoSpecialRules(OffensiveProfile attacker, Unit defender, int attacks) {
+        Unit attackingUnit = identifyUnit(attacker);
+        //hit
+        int hits = rollSuccess(attacks, getHitDifficulty(attacker, defender), false, false);
+        //wound
+        int wounds = rollSuccess(hits, getWoundDifficulty(attacker, defender), false, false);
+        //armor
+        int woundsAfterArmor = wounds - rollSuccess(wounds, getArmorDifficulty(attacker, defender), false, false);
+        //special saves
+        int woundsAfterSpecialSaves = woundsAfterArmor;
+        if (getSpecialSavesDifficulty(attacker, defender) != 0) {
+            int woundsToSave = woundsAfterArmor;
+            woundsAfterSpecialSaves -= rollSuccess(woundsToSave, getSpecialSavesDifficulty(attacker, defender), false, false);
+        }
+        int finalWounds = multiplyWounds(woundsAfterSpecialSaves, attacker, defender);
+        saveInflictedWounds(finalWounds, defender);
+    }
+
     public boolean nextProfileSimultaneous(List<OffensiveProfile> allProfiles, OffensiveProfile currentProfile) {
         OffensiveProfile nextProfile = findNextProfile(allProfiles, currentProfile);
         if (nextProfile != null) {
@@ -498,6 +553,19 @@ public class Combat {
         } else {
             return false;
         }
+    }
+
+    public boolean nextProfileStomp(List<OffensiveProfile> allProfiles, OffensiveProfile currentProfile) {
+        //if there are any more profiles to go through, return false
+        if (allProfiles.indexOf(currentProfile) != allProfiles.size() - 1) {
+            return false;
+        }
+        for (OffensiveProfile profile : allProfiles) {
+            if (profile.getStomp() != Dice.NONE) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public OffensiveProfile findNextProfile(List<OffensiveProfile> allProfiles, OffensiveProfile currentProfile) {
