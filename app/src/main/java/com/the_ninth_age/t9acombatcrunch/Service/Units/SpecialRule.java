@@ -450,7 +450,15 @@ public enum SpecialRule {
         public String toString() {
             return "Engineering rune";
         }
+    };
+
+
+    public static SpecialRule fromString(String text) {
+        for (SpecialRule value : SpecialRule.values()) {
+            if (value.toString().equals(text)) {
+                return value;
+            }
+        }
+        return null;
     }
-
-
 }
