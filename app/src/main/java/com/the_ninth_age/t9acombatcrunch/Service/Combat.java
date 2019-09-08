@@ -54,6 +54,9 @@ public class Combat {
 
         //special rules
         for (Unit unit : units) {
+            if (unit.getSpecialRules().contains(SpecialRule.WALL_OF_IRON)) {
+                unit.setAegisSave(5);
+            }
             //discipline modifiers
             if (unit.getGeneralLeadership() > 0) {
                 int leadership = max(unit.getGeneralLeadership(), unit.getLeadership());
@@ -66,8 +69,11 @@ public class Combat {
                 identifyOpposingUnit(unit).setLeadership(unit.getLeadership() - 1);
             }
             //offensive special rules
-            //weapons
             for (OffensiveProfile profile : unit.getOffensiveProfiles()) {
+                if (profile.getSpecialRules().contains(SpecialRule.FLAMING_ATTACKS) && identifyOpposingUnit(identifyUnit(profile)).getSpecialRules().contains(SpecialRule.FLAMEABLE)) {
+                    profile.setRerollWound(true);
+                }
+                //weapons
                 if (profile.getActualWeapon() == WeaponType.GREAT && !profile.getSpecialRules().contains(SpecialRule.LIGHTNING_REFLEXES)) {
                     profile.setAgi(0);
                 }
@@ -78,10 +84,6 @@ public class Combat {
                 if (profile.getActualWeapon() == WeaponType.UPROOTED_TREE) {
                     profile.setStr(5);
                     profile.setAp(0);
-                }
-                //special rules
-                if (profile.getSpecialRules().contains(SpecialRule.FLAMING_ATTACKS) && identifyOpposingUnit(identifyUnit(profile)).getSpecialRules().contains(SpecialRule.FLAMEABLE)) {
-                    profile.setRerollWound(true);
                 }
             }
         }
@@ -125,6 +127,12 @@ public class Combat {
                     identifyOpposingUnit(unit).setFailedFear(1);
                 }
             }
+            if (!(unit.getAegisSave() != 0 && unit.getAegisSave() < 6) && unit.getSpecialRules().contains(SpecialRule.SHIELD_WALL) && unit.usingShield()) {
+                unit.setAegisSave(6);
+                if (identifyOpposingUnit(unit).getCharge() == 1 && round == 1) {
+                    unit.setAegisSave(5);
+                }
+            }
         }
         for (OffensiveProfile profile : allProfiles) {
             //rules giving reroll for hit for this round: only when no reroll for whole combat
@@ -150,9 +158,13 @@ public class Combat {
                     combatDescription.add("Impact hits from " + profile.getName());
                     killedNoSpecialRules(profile, defender, profile.getImpactHits().toNumber());
                 }
-                //remove killed models unless the first profile to attack is also on initiative step 10
-                if (allProfiles.get(0).getAgiCurrent() != 10) {
+            }
+            //remove killed models unless the first profile to attack is also on initiative step 10
+            if (allProfiles.get(0).getAgiCurrent() != 10) {
+                if (unit1.getWoundsOnAgiStep() > 0) {
                     removeCasualties(unit1);
+                }
+                if (unit2.getWoundsOnAgiStep() > 0) {
                     removeCasualties(unit2);
                 }
             }
@@ -183,8 +195,12 @@ public class Combat {
                 }
             }
         }
-        removeCasualties(unit1);
-        removeCasualties(unit2);
+        if (unit1.getWoundsOnAgiStep() > 0) {
+            removeCasualties(unit1);
+        }
+        if (unit2.getWoundsOnAgiStep() > 0) {
+            removeCasualties(unit2);
+        }
         //if no unit is destroyed roll for break test
         if (outcome == null) {
             combatScoreAndBreakTest();
@@ -314,7 +330,13 @@ public class Combat {
 
     public int getHitDifficulty(OffensiveProfile attacker, Unit defender) {
         combatDescription.add("Rolling for hit");
-        int diff = attacker.getOff() - defender.getDef();
+        int off = attacker.getOff();
+        int def = defender.getDef();
+        if (defender.getSpecialRules().contains(SpecialRule.PARRY) || (defender.getActualWeapons().contains(WeaponType.HW_SHIELD) && defender.isOnFoot())) {
+            def = max(attacker.getOff(), def + 1);
+        }
+
+        int diff = off - def;
         int difficulty;
         if (diff > 3) {
             difficulty = 2;
@@ -713,5 +735,4 @@ public class Combat {
         combatDescription.add("rolled " + d3);
         return d3;
     }
-
 }

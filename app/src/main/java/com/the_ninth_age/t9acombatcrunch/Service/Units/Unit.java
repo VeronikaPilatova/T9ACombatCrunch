@@ -108,6 +108,18 @@ public class Unit extends ArmybookEntry {
         }
     }
 
+    public boolean usingShield() {
+        for (OffensiveProfile profile : offensiveProfiles) {
+            if (profile.getActualWeapon() == WeaponType.HW_SHIELD
+                    || profile.getActualWeapon() == WeaponType.LANCE_SHIELD
+                    || profile.getActualWeapon() == WeaponType.LIGHT_LANCE_SHIELD
+                    || profile.getActualWeapon() == WeaponType.SPEAR_SHIELD) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void resetUnit() {
         modelCount = originalModelCount;
         leadership = armybookEntry.getLeadership();
