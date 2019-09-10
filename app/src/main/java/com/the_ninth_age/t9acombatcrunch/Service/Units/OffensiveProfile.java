@@ -22,6 +22,7 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     private int originalAp;
     private int originalAgi;
     private List specialRules;
+    private DevastatingCharge devastatingCharge;
 
     private int countInUnit;
     private int championApplicable;
@@ -32,7 +33,7 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
     private boolean rerollHitBasic;
     private boolean rerollWound;
 
-    public OffensiveProfile(String name, int att, int off, int str, int ap, int agi, int supportingAttacks, Dice multipleWounds, Dice impactHits, Dice stomp, Dice grindingHits, List specialRules) {
+    public OffensiveProfile(String name, int att, int off, int str, int ap, int agi, int supportingAttacks, Dice multipleWounds, Dice impactHits, Dice stomp, Dice grindingHits, List specialRules, DevastatingCharge devastatingCharge) {
         this.name = name;
         this.att = att;
         this.originalAtt = att;
@@ -50,6 +51,7 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
         this.stomp = stomp;
         this.grindingHits = grindingHits;
         this.specialRules = specialRules;
+        this.devastatingCharge = devastatingCharge;
         this.rerollHit = false;
         this.rerollHitBasic = false;
         this.rerollWound = false;
@@ -242,6 +244,14 @@ public class OffensiveProfile implements Comparable<OffensiveProfile> {
 
     public void setGrindingHits(Dice grindingHits) {
         this.grindingHits = grindingHits;
+    }
+
+    public DevastatingCharge getDevastatingCharge() {
+        return devastatingCharge;
+    }
+
+    public void setDevastatingCharge(DevastatingCharge devastatingCharge) {
+        this.devastatingCharge = devastatingCharge;
     }
 
     @Override
