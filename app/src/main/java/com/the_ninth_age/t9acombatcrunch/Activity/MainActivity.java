@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //onClick listeners for all five buttons
+        //onClick listeners for all six buttons
         button_general_dis_increase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                     armybook = (String) parentView.getItemAtPosition(position);
                     updateArmybookEntryChoices();
                     armybookEntry = (String) spinner_unit_type.getItemAtPosition(0);
-                    spinner_unit_type.setSelection((getIndex(spinner_unit_type, armybookEntry)));
+                    spinner_unit_type.setSelection(getIndex(spinner_unit_type, armybookEntry));
                     updateWeaponSpinners();
                     if (spinner_weapon_cc.getVisibility() == View.VISIBLE) {
                         weaponCC = (String) spinner_weapon_cc.getItemAtPosition(0);
@@ -435,6 +435,39 @@ public class MainActivity extends AppCompatActivity {
         updateWeaponSpinners();
     }
 
+    //when getting result from child activity, 10 is connected with stats activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == 10) {
+            if(data != null) {
+                String newArmybook = data.getStringExtra("armybook");
+                String newArmybookEntry = data.getStringExtra("unitName");
+                //if armybook entry changed, update information
+                if (!newArmybookEntry.equals(armybookEntry)) {
+                    armybook = newArmybook;
+                    armybookEntry = newArmybookEntry;
+                    spinner_armybook.setSelection(getIndex(spinner_armybook, armybook));
+                    updateArmybookEntryChoices();
+                    spinner_unit_type.setSelection(getIndex(spinner_unit_type, armybookEntry));
+                    Toast.makeText(MainActivity.this, "Data received, new unit is " + armybookEntry, Toast.LENGTH_SHORT).show();
+//                    updateWeaponSpinners();
+//                    if (spinner_weapon_cc.getVisibility() == View.VISIBLE) {
+//                        weaponCC = (String) spinner_weapon_cc.getItemAtPosition(0);
+//                    }
+//                    if (spinner_weapon_shooting.getVisibility() == View.VISIBLE) {
+//                        weaponShooting = (String) spinner_weapon_shooting.getItemAtPosition(0);;
+//                    }
+//                    updateLostHpChooser();
+//                    updateEditFields();
+//                    updateCommandOptions();
+                } else {
+                    Toast.makeText(MainActivity.this, "Data received, unit not changed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
     //method to update boolean variables when any checkbox is checked
     //general checkbox also displays or hides the discipline fields
     public void onCheckboxClicked(View view) {
@@ -584,7 +617,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("unitName", armybookEntry);
         String serviceJson = gson.toJson(simulatorService);
         intent.putExtra("simulatorService", serviceJson);
-        startActivity(intent);
+        //start activity for result - to get data back from child activity, 10 is request code for stats activity, used to determine result type later
+        startActivityForResult(intent, 10);
     }
 
     //helper methods

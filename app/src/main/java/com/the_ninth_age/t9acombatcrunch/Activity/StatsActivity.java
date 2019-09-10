@@ -1,7 +1,9 @@
 package com.the_ninth_age.t9acombatcrunch.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +18,7 @@ import com.the_ninth_age.t9acombatcrunch.Service.Units.ArmybookEntry;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.Dice;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.OffensiveProfile;
 import com.the_ninth_age.t9acombatcrunch.Service.Units.SpecialRule;
+import com.the_ninth_age.t9acombatcrunch.Service.Units.Unit;
 
 import org.w3c.dom.Text;
 
@@ -191,6 +194,22 @@ public class StatsActivity extends AppCompatActivity {
         updateUnitValues(armybookEntryName);
         updateArmybookEntryChoices();
         displayUnitValues();
+    }
+
+    //to send data back to parent activity on pressing back
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent intent = new Intent();
+                intent.putExtra("armybook", armybook);
+                intent.putExtra("unitName", armybookEntryName);
+                setResult(RESULT_OK, intent);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //helper methods

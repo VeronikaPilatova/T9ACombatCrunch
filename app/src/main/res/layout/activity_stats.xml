@@ -240,6 +240,7 @@
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP1"
                     android:layout_marginRight="16dp"
+                    android:maxWidth="80dp"
                     android:text="name" />
 
                 <TextView
@@ -286,6 +287,7 @@
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP2"
                     android:layout_marginRight="16dp"
+                    android:maxWidth="80dp"
                     android:text="name" />
 
                 <TextView
@@ -332,6 +334,7 @@
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP3"
                     android:layout_marginRight="16dp"
+                    android:maxWidth="80dp"
                     android:text="name" />
 
                 <TextView
@@ -378,6 +381,7 @@
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP4"
                     android:layout_marginRight="16dp"
+                    android:maxWidth="80dp"
                     android:text="name" />
 
                 <TextView
@@ -424,6 +428,7 @@
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP5"
                     android:layout_marginRight="16dp"
+                    android:maxWidth="80dp"
                     android:text="name" />
 
                 <TextView
@@ -470,6 +475,7 @@
                 <TextView
                     android:id="@+id/textview_stats_profileName_OP6"
                     android:layout_marginRight="16dp"
+                    android:maxWidth="80dp"
                     android:text="name" />
 
                 <TextView
