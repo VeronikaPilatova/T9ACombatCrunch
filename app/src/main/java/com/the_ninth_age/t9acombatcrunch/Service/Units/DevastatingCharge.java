@@ -17,8 +17,8 @@ public class DevastatingCharge {
     private int aegisSave;
     private int leadership;
     private int supportingRows;
-    private List<SpecialRule> specialRulesArmybookEntry;
-    private List<SpecialRule> specialRulesOffensiveProfile;
+    private List specialRulesArmybookEntry;
+    private List specialRulesOffensiveProfile;
 
     public DevastatingCharge() {
         this.att = 0;
@@ -37,7 +37,7 @@ public class DevastatingCharge {
         this.specialRulesOffensiveProfile = Arrays.asList();
     }
 
-    public DevastatingCharge(int att, int off, int str, int ap, int agi, int def, int res, int arm, int fortitudeSave, int aegisSave, int leadership, int supportingRows, List<SpecialRule> specialRulesArmybookEntry, List<SpecialRule> specialRulesOffensiveProfile) {
+    public DevastatingCharge(int att, int off, int str, int ap, int agi, int def, int res, int arm, int fortitudeSave, int aegisSave, int leadership, int supportingRows, List specialRulesArmybookEntry, List specialRulesOffensiveProfile) {
         this.att = att;
         this.off = off;
         this.str = str;

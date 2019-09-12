@@ -23,6 +23,21 @@ public enum WeaponTypeShooting {
             return "Forge gun";
         }
     },
+    HANDGUN {
+        public String toString() {
+            return "Handgun";
+        }
+    },
+    REPEATER_GUN {
+        public String toString() {
+            return "Repeater gun";
+        }
+    },
+    BRACE_OF_PISTOLS {
+        public String toString() {
+            return "Brace of pistols";
+        }
+    },
     NONE {public String toString() {return "None";}};
 
     public static WeaponTypeShooting fromString(String text) {

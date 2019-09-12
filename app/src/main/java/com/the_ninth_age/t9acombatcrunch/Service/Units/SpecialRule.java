@@ -446,6 +446,66 @@ public enum SpecialRule {
             return "Tall";
         }
     },
+    BEAST_HUNTERS {
+        public String toString() {
+            return "Beast hunters";
+        }
+    },
+    FIRE_ON_IMPACT {
+        public String toString() {
+            return "Fire on impact";
+        }
+    },
+    WEAPON_MASTER {
+        public String toString() {
+            return "Weapon master";
+        }
+    },
+    RESERVES {
+        public String toString() {
+            return "Reserves";
+        }
+    },
+    SUPPORT {
+        public String toString() {
+            return "Support unit";
+        }
+    },
+    PARENT {
+        public String toString() {
+            return "Parent unit";
+        }
+    },
+    PARENT_SUPPORT {
+        public String toString() {
+            return "PArent or support unit";
+        }
+    },
+    FRONTIERSMEN {
+        public String toString() {
+            return "Frontiersmen";
+        }
+    },
+    FANATICAL {
+        public String toString() {
+            return "Fanatical";
+        }
+    },
+    ZEALOTS {
+        public String toString() {
+            return "Zealots";
+        }
+    },
+    STEAM_POWERED {
+        public String toString() {
+            return "Steam powered";
+        }
+    },
+    CHANNEL {
+        public String toString() {
+            return "Channel";
+        }
+    },
     ENGINEERING_RUNE {
         public String toString() {
             return "Engineering rune";
